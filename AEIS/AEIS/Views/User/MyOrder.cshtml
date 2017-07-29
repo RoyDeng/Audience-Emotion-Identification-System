@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "訂單查詢";
+}
+
+@using AEIS.Models
+
+<section class="g-mb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 g-mb-50 g-mb-0--lg">
+                <div class="list-group list-group-border-0 g-mb-40">
+                    <a href="MyProduct" class="list-group-item list-group-item-action justify-content-between">
+                        <span><i class="icon-home g-pos-rel g-top-1 g-mr-8"></i>我的商品</span>
+                    </a>
+                    <a href="MyOrder" class="list-group-item list-group-item-action justify-content-between active">
+                        <span><i class="icon-notebook g-pos-rel g-top-1 g-mr-8"></i>訂單查詢</span>
+                    </a>
+                    <a href="Profile" class="list-group-item list-group-item-action justify-content-between">
+                        <span><i class="icon-layers g-pos-rel g-top-1 g-mr-8"></i>會員設定</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="card g-brd-primary rounded-0">
+                    <h3 class="card-header g-bg-primary g-brd-transparent g-color-white g-font-size-16 rounded-0 mb-0">訂單查詢</h3>
+                    <div class="table-responsive">
+                        <table class="table u-table--v1 mb-0">
+                            <thead>
+                                <tr>
+                                    <th>訂單編號</th>
+                                    <th>金額</th>
+                                    <th>成立時間</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (OrderModel o in Model)
+                                {
+                                    <tr>
+                                        <th>@o.OrderID</th>
+                                        <td>@Math.Round(Convert.ToDecimal(o.Total), 0) 元</td>
+                                        <td>@o.DateAdded</td>
+                                        <td>
+                                            <a href="~/OrderDetail?OrderID=@o.OrderID" class="btn u-btn-primary g-mr-10 g-mb-15">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <hr class="g-brd-gray-light-v4 g-mt-10 g-mb-40">
+                <nav class="g-mb-50" aria-label="Page Navigation">
+                    <ul class="list-inline">
+                        @Html.Raw(ViewData["pages"])
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>

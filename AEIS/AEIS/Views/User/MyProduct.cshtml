@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "我的商品";
+}
+
+@using AEIS.Models
+
+<section class="g-mb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 g-mb-50 g-mb-0--lg">
+                <div class="list-group list-group-border-0 g-mb-40">
+                    <a href="MyProduct" class="list-group-item list-group-item-action justify-content-between active">
+                        <span><i class="icon-home g-pos-rel g-top-1 g-mr-8"></i>我的商品</span>
+                    </a>
+                    <a href="MyOrder" class="list-group-item list-group-item-action justify-content-between">
+                        <span><i class="icon-notebook g-pos-rel g-top-1 g-mr-8"></i>訂單查詢</span>
+                    </a>
+                    <a href="Profile" class="list-group-item list-group-item-action justify-content-between">
+                        <span><i class="icon-layers g-pos-rel g-top-1 g-mr-8"></i>會員設定</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="row">
+                    @if (ViewData["msg"] == null)
+                    {
+                        foreach (ProductModel p in Model)
+                        {
+                            <div class="col-sm-6 col-lg-4 g-px-10 g-mb-20">
+                                <article class="u-block-hover">
+                                    <figure class="g-bg-cover g-bg-bluegray-opacity-0_3--after">
+                                        <img class="img-fluid w-100 u-block-hover__main--zoom-v1" src="@Url.Action("GetProductImage", "Product", new RouteValueDictionary { { "ProductID", @p.ProductID } })">
+                                    </figure>
+                                    <a href="~/MyProductDetail?ProductID=@p.ProductID">
+                                        <span class="u-icon-v3 g-bg-black-opacity-0_5 g-bg-black--hover g-color-white g-rounded-50x g-cursor-pointer g-absolute-centered">
+                                            <i class="fa fa-eye g-left-2"></i>
+                                        </span>
+                                    </a>
+                                    <div class="g-pos-abs g-bottom-20 g-left-20 g-right-20">
+                                        <p class="g-color-white">@Math.Round(Convert.ToDecimal(p.Price), 0) 元</p>
+                                        <h3 class="h4 g-mt-10">
+                                            <a class="g-color-white g-color-white--hover" href="~/MyProductDetail?ProductID=@p.ProductID">@p.Name</a>
+                                        </h3>
+                                    </div>
+                                </article>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="g-brd-around g-brd-gray-light-v4 g-line-height-2 g-rounded-3 g-pa-40 g-mb-30 text-center">
+                            <h3 class="h2 g-font-weight-300 g-mb-20">@ViewData["msg"]</h3>
+                            <p class="mb-0">如欲販售商品，請先建立商店。</p>
+                        </div>
+                    }
+                </div>
+                <hr class="g-brd-gray-light-v4 g-mt-10 g-mb-40">
+                <nav class="g-mb-50" aria-label="Page Navigation">
+                    <ul class="list-inline">
+                        @Html.Raw(ViewData["pages"])
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>

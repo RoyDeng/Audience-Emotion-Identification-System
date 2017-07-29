@@ -1,0 +1,33 @@
+body {
+  background:#fff; 
+}
+
+
+
+#camera-canvas {
+    max-width: 100%;
+}
+
+.result {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+    border:2px solid;
+    z-index:1050;
+}
+
+.results{
+  padding:10px;
+  border:1px solid #dadada;
+  margin-bottom:10px;
+}
+
+canvas{
+  width:100%;
+}
+  
+
+#btn-emo
+{
+    width:100%;
+}
+

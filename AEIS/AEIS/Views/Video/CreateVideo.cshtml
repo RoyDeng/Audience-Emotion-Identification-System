@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "開始直播";
+}
+
+<section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall" data-options="{direction: 'reverse', settings_mode_oneelement_max_offset: '150'}">
+    <div class="divimage dzsparallaxer--target w-100 g-bg-repeat g-bg-primary" style="height: 200%;"></div>
+    <div class="container g-color-white g-z-index-1 g-py-100">
+        <h2 class="h1 text-uppercase g-font-weight-300 g-mb-30">開始直播</h2>
+    </div>
+</section>
+<section class="g-py-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="g-brd-around g-brd-gray-light-v4 g-pa-30 g-mb-30" action="~/StreamVideoProcess" method="post">
+                    <div class="form-group g-mb-25">
+                        <label for="title">標題</label>
+                        <input type="text" class="form-control form-control-md rounded-0" id="title" name="title" placeholder="標題" required="required">
+                    </div>
+                    <button type="submit" class="btn btn-md u-btn-primary rounded-0">確定</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

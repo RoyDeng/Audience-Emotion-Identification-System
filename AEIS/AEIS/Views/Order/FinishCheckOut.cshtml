@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "完成結帳";
+}
+<section class="g-py-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 g-mb-50">
+                <div class="g-brd-around g-brd-gray-light-v4 g-line-height-2 g-rounded-3 g-pa-40 g-mb-30 text-center">
+                    <h3 class="h2 g-font-weight-300 g-mb-20">完成結帳</h3>
+                    <p class="mb-0">10秒後重新導向至首頁...</p>
+                    <a href="Index" class="btn u-btn-primary g-mr-10 g-mb-15">
+                        <i class="fa fa-arrow-left g-mr-5"></i> 直接返回首頁
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    setTimeout("location.href='Index'", 10000);
+</script>

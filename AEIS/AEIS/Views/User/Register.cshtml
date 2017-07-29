@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "會員註冊";
+}
+
+<section class="g-bg-gray-light-v5">
+    <div class="container g-py-100">
+        <div class="row justify-content-center">
+            <div class="col-sm-10 col-md-9 col-lg-6">
+                <div class="u-shadow-v21 g-bg-white rounded g-py-40 g-px-30">
+                    <header class="text-center mb-4">
+                        <h2 class="h2 g-color-black g-font-weight-600">會員註冊</h2>
+                    </header>
+                    <form class="g-py-15" action="~/RegisterProcess" method="post">
+                        <div class="mb-4">
+                            <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">使用者名稱</label>
+                            <input id="username" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" name="username" type="text" placeholder="使用者名稱">
+                            <span id="UsernameCheckResult"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 mb-4">
+                                <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">姓氏</label>
+                                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" name="lastname" type="text" placeholder="姓氏">
+                            </div>
+                            <div class="col-xs-12 col-sm-6 mb-4">
+                                <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">姓名</label>
+                                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" name="firstname" type="text" placeholder="姓名">
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Email</label>
+                            <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" name="email" type="email" placeholder="Email">
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 mb-4">
+                                <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">密碼</label>
+                                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="password" placeholder="密碼">
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 mb-4">
+                                <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">確認密碼</label>
+                                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" name="password" type="password" placeholder="確認密碼">
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-between mb-5">
+                            <div class="col-8 align-self-center">
+                                <label class="form-check-inline u-check g-color-gray-dark-v5 g-font-size-13 g-pl-25">
+                                    <input class="hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                                    <div class="u-check-icon-checkbox-v6 g-absolute-centered--y g-left-0">
+                                        <i class="fa" data-check-icon="&#xf00c"></i>
+                                    </div>
+                                    我同意並接受<a href="Terms">隱私權與服務條款</a>
+                                </label>
+                            </div>
+                            <div class="col-4 align-self-center text-right">
+                                <button class="btn btn-md u-btn-primary rounded g-py-13 g-px-25" type="submit">註冊</button>
+                            </div>
+                        </div>
+                    </form>
+                    <footer class="text-center">
+                        <p class="g-color-gray-dark-v5 g-font-size-13 mb-0">已經申請會員了?立即<a class="g-font-weight-600" href="Login">登入</a></p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/js/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#username").blur(function () {
+            var vv = $("#username").val();
+            var pp = $.param({ "username": vv });
+            $.get("CheckUsernameDuplicate", pp, function (xx) {
+                if (xx == "y") {
+                    $("#UsernameCheckResult").text("帳號已被使用");
+                    $("#UsernameCheckResult").css("color", "red");
+                }
+                else if (xx == "n") {
+                    $("#UsernameCheckResult").text("帳號可使用");
+                    $("#UsernameCheckResult").css("color", "blue");
+                }
+            }, "text");
+        });
+    });
+</script>

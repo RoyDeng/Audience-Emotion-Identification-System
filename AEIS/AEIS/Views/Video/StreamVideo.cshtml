@@ -1,0 +1,158 @@
+﻿@{
+    ViewBag.Title = Model.Item1.Title;
+}
+
+@model Tuple<AEIS.Models.VideoModel, AEIS.Models.ProductModel>
+
+<section class="container g-pt-50">
+    <h2 class="g-color-black g-font-weight-600 text-center g-mb-60">@Model.Item1.Title</h2>
+    <div class="u-shadow-v24 g-bg-white rounded g-pa-20">
+        <div id="vid-box"></div>
+        <video id="preview" controls hidden="hidden" muted></video>
+    </div>
+</section>
+<section class="container g-pt-100 g-pb-40">
+    <div class="row justify-content-between">
+        <div class="col-lg-5 g-mb-30">
+            <article class="u-block-hover">
+                <figure class="g-bg-cover g-bg-bluegray-opacity-0_3--after">
+                    <img class="img-fluid w-100 u-block-hover__main--zoom-v1" src="@Url.Action("GetProductImage", "Product", new RouteValueDictionary { {"ProductID", Model.Item2.ProductID} })">
+                </figure>
+                <div class="g-pos-abs g-bottom-20 g-left-20 g-right-20">
+                    <h3 class="h4 g-mt-10 g-color-white">@Model.Item2.Name</h3>
+                    <p class="g-color-white"><span class="g-font-size-20">@Math.Round(Convert.ToDecimal(Model.Item2.Price)) 元</span><span class="g-font-size-14">/@Model.Item2.Quantity 件</span></p>
+                    <p class="g-color-white g-font-size-16">@ViewData["categery"]</p>
+                    <small class="g-color-white">@Model.Item2.Description</small>
+                </div>
+            </article>
+        </div>
+        <div class="col-lg-6 g-mt-50 g-mb-3">
+            <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-green-top g-line-height-1_8 g-pa-30 g-mb-30">
+                <p class="g-font-size-13"><span id="here-now" class="g-font-size-25">0</span>人正在收看</p>
+                <button id="end" class="btn btn-md u-btn-primary g-mr-10 g-mb-15">結束</button>
+                <ul id="logs" class="list-unstyled"></ul>
+                <div id="container" style="padding:1em 2em;"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/js/jquery.min.js"></script>
+<script src="https://cdn.pubnub.com/pubnub.min.js"></script>
+<script src="~/js/webrtc.js"></script>
+<script src="~/js/rtc-controller.js"></script>
+<script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
+<script type="text/javascript">
+    var video_out = document.getElementById("vid-box");
+    var here_now = document.getElementById("here-now");
+    var preview = document.getElementById("preview");
+    var recordVideo;
+
+    var streamName = "@Model.Item1.Number";
+    $(document).ready(function () {
+        var viewed;
+        var phone = window.phone = PHONE({
+            number: streamName,
+            publish_key: 'pub-c-561a7378-fa06-4c50-a331-5c0056d0163c',
+            subscribe_key: 'sub-c-17b7db8a-3915-11e4-9868-02ee2ddab7fe',
+            oneway: true,
+            broadcast: true
+        });
+        var ctrl = window.ctrl = CONTROLLER(phone);
+        ctrl.ready(function () {
+            ctrl.addLocalStream(video_out);
+            ctrl.stream();
+            addLog("創建房間：" + streamName);
+        });
+        ctrl.receive(function (session) {
+            session.connected(function (session) { addLog(session.number + "已加入。"); });
+            session.ended(function (session) { addLog(session.number + "已離開。"); console.log(session) });
+        });
+        ctrl.streamPresence(function (m) {
+            viewed = m.occupancy;
+            here_now.innerHTML = m.occupancy;
+            addLog("目前有" + m.occupancy + "人正在觀看。");
+        });
+
+        navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+        navigator.getUserMedia({
+            audio: true,
+            video: true
+        }, function (stream) {
+            preview.src = window.URL.createObjectURL(stream);
+            preview.play();
+
+            recordVideo = RecordRTC(stream, {
+                type: 'video'
+            });
+
+            recordVideo.startRecording();
+
+            stop.disabled = false;
+        }, function (error) {
+            alert(error.toString());
+        });
+
+        $("#end").click(function () {
+            if (!window.phone) return;
+            ctrl.hangup();
+            video_out.innerHTML = "";
+            recordVideo.stopRecording(function () {
+                PostBlob(recordVideo.getBlob());
+            });
+
+            var data = $.param({ "number": streamName, "viewed": viewed });
+            $.post("UploadVideoProcess", data);
+        });
+    });
+
+    function getVideo(number) {
+        return $('*[data-number="' + number + '"]');
+    }
+
+    function addLog(log) {
+        $('#logs').append("<p>" + log + "</p>");
+    }
+
+    function PostBlob(blob) {
+        var formData = new FormData();
+        var filename = streamName + ".mp4";
+
+        formData.append('video-filename', filename);
+        formData.append('video-blob', blob);
+
+        var hr = document.createElement('hr');
+        container.appendChild(hr);
+        var strong = document.createElement('strong');
+        strong.id = 'percentage';
+        strong.innerHTML = '上傳進度：';
+        container.appendChild(strong);
+        var progress = document.createElement('progress');
+        container.appendChild(progress);
+
+        xhr('UploadVideo', formData, progress, percentage);
+    }
+
+    function xhr(url, data, progress, percentage, callback) {
+        var request = new XMLHttpRequest();
+
+        if (url.indexOf('DeleteVideo') == -1) {
+            request.upload.onloadstart = function () {
+                percentage.innerHTML = '開始上傳...';
+            };
+
+            request.upload.onprogress = function (event) {
+                progress.max = event.total;
+                progress.value = event.loaded;
+                percentage.innerHTML = '上傳進度：' + Math.round(event.loaded / event.total * 100) + "%";
+            };
+
+            request.upload.onload = function () {
+                percentage.innerHTML = '上傳完畢！';
+            };
+        }
+
+        request.open('POST', url);
+        request.send(data);
+    }
+</script>
+<script src="https://cdn.webrtc-experiment.com/commits.js" async> </script>

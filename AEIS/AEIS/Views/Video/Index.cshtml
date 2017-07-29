@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "直播";
+}
+
+@using AEIS.Models
+
+<section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall" data-options="{direction: 'reverse', settings_mode_oneelement_max_offset: '150'}">
+    <div class="divimage dzsparallaxer--target w-100 g-bg-repeat g-bg-primary" style="height: 200%;"></div>
+    <div class="container g-color-white g-z-index-1 g-py-100">
+        <h2 class="h1 text-uppercase g-font-weight-300 g-mb-30">直播</h2>
+        <form class="g-width-60x--md mx-auto" action="~/Videos" method="get">
+            <div class="form-group g-mb-20">
+                <div class="input-group u-shadow-v21 rounded g-mb-15">
+                    <input class="form-control form-control-md g-brd-white g-font-size-16 border-right-0 pr-0 g-py-15" type="text" name="title" placeholder="搜尋直播">
+                    <div class="input-group-addon d-flex align-items-center g-bg-white g-brd-white g-color-gray-light-v1 g-pa-2">
+                        <button class="btn u-btn-primary g-font-size-16 g-py-15 g-px-20" type="submit">
+                            <i class="fa fa-search g-pos-rel g-top-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<section class="container g-py-100">
+    <div class="row no-gutters g-mx-minus-10">
+        @foreach (VideoModel v in Model)
+        {
+            <div class="col-sm-6 col-lg-4 g-px-10 g-mb-20">
+                <article class="u-block-hover">
+                    <figure class="g-bg-cover g-bg-bluegray-opacity-0_3--after">
+                        <img class="img-fluid w-100 u-block-hover__main--zoom-v1" src="@Url.Action("GetProductImage", "Product", new RouteValueDictionary { {"ProductID", @v.ProductID} })">
+                    </figure>
+                    <a href="~/WatchVideo?Number=@v.Number">
+                        <span class="u-icon-v3 g-bg-black-opacity-0_5 g-bg-black--hover g-color-white g-rounded-50x g-cursor-pointer g-absolute-centered">
+                                <i class="fa fa-play g-left-2"></i>
+                        </span>
+                    </a>
+                    <div class="g-pos-abs g-bottom-20 g-left-20 g-right-20">
+                        <span class="g-mr-5">
+                            <span class="btn btn-xs u-btn-red rounded-0">直播中</span>
+                        </span>
+                        <small class="g-color-white">
+                            @v.DateStart
+                        </small>
+                        <h3 class="h4 g-mt-10">
+                            <a class="g-color-white g-color-white--hover" href="~/WatchVideo?Number=@v.Number">@v.Title</a>
+                        </h3>
+                    </div>
+                </article>
+            </div>
+        }
+    </div>
+    <hr class="g-brd-gray-light-v4 g-mt-10 g-mb-40">
+    <nav class="g-mb-50" aria-label="Page Navigation">
+        <ul class="list-inline">
+            @Html.Raw(ViewData["pages"])
+        </ul>
+    </nav>
+</section>

@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "我要賣東西";
+}
+
+<section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall" data-options="{direction: 'reverse', settings_mode_oneelement_max_offset: '150'}">
+    <div class="divimage dzsparallaxer--target w-100 g-bg-repeat g-bg-primary" style="height: 200%;"></div>
+    <div class="container g-color-white g-z-index-1 g-py-100">
+        <h2 class="h1 text-uppercase g-font-weight-300 g-mb-30">我要賣東西</h2>
+    </div>
+</section>
+<section class="g-py-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="g-brd-around g-brd-gray-light-v4 g-pa-30 g-mb-30" action="~/ModifyProductProcess" method="post" enctype="multipart/form-data">
+                    <div class="form-group g-mb-25">
+                        <label for="image">圖片</label>
+                        <input type="file" class="form-control-file" id="image" name="image" required="required">
+                    </div>
+                    <div class="form-group g-mb-25">
+                        <label for="name">名稱</label>
+                        <input type="text" class="form-control form-control-md rounded-0" id="name" name="name" placeholder="名稱" required="required">
+                    </div>
+                    <div class="form-group g-mb-25">
+                        <label for="description">介紹</label>
+                        <textarea class="form-control form-control-md rounded-0" id="description" name="description" rows="6" required="required"></textarea>
+                    </div>
+                    <div class="form-group g-mb-25">
+                        <label for="category">種類</label>
+                        <select class="form-control rounded-0" id="category" name="categoryid">
+                            <option>請選擇</option>
+                            @foreach (KeyValuePair<int, string> kv in (Dictionary<int, string>)ViewData["category"])
+                            {
+                                <option value="@kv.Key">@kv.Value</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group g-mb-25">
+                        <label for="price">單價</label>
+                        <input type="number" class="form-control form-control-md rounded-0" id="price" name="price" placeholder="單價" required="required">
+                    </div>
+                    <div class="form-group g-mb-25">
+                        <label for="quantity">數量</label>
+                        <input type="number" class="form-control form-control-md rounded-0" id="quantity" name="quantity" placeholder="數量" required="required">
+                    </div>
+                    <button type="submit" class="btn btn-md u-btn-primary rounded-0">確定</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

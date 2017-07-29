@@ -1,0 +1,239 @@
+﻿@{
+    ViewBag.Title = "我的商品明細-" + Model.Item2.Name;
+}
+
+@using AEIS.Models
+@model Tuple<AEIS.Models.VideoModel, AEIS.Models.ProductModel, List<AEIS.Models.EmotionModel>>
+
+<section class="container g-py-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="embed-responsive embed-responsive-16by9 g-mb-60">
+                    <video preload="auto" controls="controls">
+                        <source src="~/uploads/@String.Format("{0}{1}", Model.Item1.Number, ".mp4")" type="video/mp4;">
+                    </video>
+                </div>
+            </div>
+            <div class="col-lg-4 g-mb-30">
+                <ul class="nav nav-justified u-nav-v1-1 u-nav-primary g-brd-bottom--md g-brd-bottom-2 g-brd-primary g-mb-20" role="tablist" data-target="nav-1-1-default-hor-left-underline" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-primary g-mb-20">
+                    <li class="nav-item">
+                        <a class="nav-link g-py-10 active" data-toggle="tab" href="#product-info" role="tab">商品</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link g-py-10" data-toggle="tab" href="#sales-status" role="tab">銷售狀況</a>
+                    </li>
+                </ul>
+                <div id="nav-1-1-default-hor-left-underline" class="tab-content">
+                    <div class="tab-pane fade show active" id="product-info" role="tabpanel">
+                        <article class="u-block-hover">
+                            <figure class="g-bg-cover g-bg-bluegray-opacity-0_3--after">
+                                <img class="img-fluid w-100 u-block-hover__main--zoom-v1" src="@Url.Action("GetProductImage", "Product", new RouteValueDictionary { {"ProductID", Model.Item2.ProductID} })">
+                            </figure>
+                            <div class="g-pos-abs g-bottom-20 g-left-20 g-right-20">
+                                <h3 class="h4 g-mt-10 g-color-white">@Model.Item2.Name</h3>
+                                <p class="g-color-white"><span class="g-font-size-20">@Math.Round(Convert.ToDecimal(Model.Item2.Price), 0) 元</span><span class="g-font-size-14">/@Model.Item2.Quantity 件</span></p>
+                                <p class="g-color-white g-font-size-16">@ViewData["categery"]</p>
+                                <small class="g-color-white">@Model.Item2.Description</small>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="tab-pane fade" id="sales-status" role="tabpanel">
+                        <div class="g-bg-gray-light-v5 g-pa-20 g-pb-50 mb-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="g-color-black">金額</span>
+                                <span class="g-color-black g-font-weight-300">@Math.Round(Convert.ToDecimal(ViewData["price"]), 0) 元</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="g-color-black">數量</span>
+                                <span class="g-color-black g-font-weight-300">@ViewData["quantity"] 件</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="g-color-black">開始時間</span>
+                                <span class="g-color-black g-font-weight-300">@Model.Item1.DateStart</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="g-color-black">結束時間</span>
+                                <span class="g-color-black g-font-weight-300">@Model.Item1.DateEnd</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="g-color-black">觀看人數</span>
+                                <span class="g-color-black g-font-weight-300">@Model.Item1.Viewed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container g-py-100">
+    <ul class="nav nav-justified u-nav-v1-1 u-nav-primary g-brd-bottom--md g-brd-bottom-2 g-brd-primary g-mb-20" role="tablist" data-target="nav-1-1-default-hor-left-underline" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-primary g-mb-20">
+        <li class="nav-item">
+            <a class="nav-link g-py-10 active" data-toggle="tab" href="#flow" role="tab">快樂流量</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link g-py-10" data-toggle="tab" href="#summary" role="tab">表情摘要</a>
+        </li>
+    </ul>
+    <div id="nav-1-1-default-hor-left-underline" class="tab-content">
+        <div class="tab-pane fade show active" id="flow" role="tabpanel">
+            <div id="happiness-flow" style="width:100%; height:400px;"></div>
+        </div>
+        <div class="tab-pane fade" id="summary" role="tabpanel">
+            <div id="emotion-summary" style="width: 520px; height: 400px;"></div>
+        </div>
+    </div>
+</section>
+<script src="~/js/amcharts.js" type="text/javascript"></script>
+<script src="~/js/serial.js" type="text/javascript"></script>
+<script>
+    var chart;
+
+    var chartData = [];
+
+    var array = @Html.Raw(
+        Json.Encode(
+            ((IEnumerable<EmotionModel>)Model.Item3).Select(emotion => new
+            {
+                date_added = emotion.DateAdded,
+                happiness = emotion.Happiness
+            })
+        )
+    );
+
+    AmCharts.ready(function () {
+        generateChartData();
+
+        chart = new AmCharts.AmSerialChart();
+        chart.dataProvider = chartData;
+        chart.categoryField = "date";
+
+        chart.addListener("dataUpdated", zoomChart);
+
+        var categoryAxis = chart.categoryAxis;
+        categoryAxis.parseDates = true;
+        categoryAxis.minPeriod = "mm";
+        categoryAxis.gridAlpha = 0.07;
+        categoryAxis.axisColor = "#FFFF00";
+
+        var valueAxis = new AmCharts.ValueAxis();
+        valueAxis.gridAlpha = 0.07;
+        valueAxis.title = "快樂";
+        chart.addValueAxis(valueAxis);
+
+        var graph = new AmCharts.AmGraph();
+        graph.type = "line";
+        graph.title = "red line";
+        graph.valueField = "visits";
+        graph.lineAlpha = 1;
+        graph.lineColor = "#DAA520";
+        graph.fillAlphas = 0.3;
+        chart.addGraph(graph);
+
+        var chartCursor = new AmCharts.ChartCursor();
+        chartCursor.cursorPosition = "mouse";
+        chartCursor.categoryBalloonDateFormat = "JJ:NN, DD MMMM";
+        chart.addChartCursor(chartCursor);
+
+        chart.write("happiness-flow");
+    });
+
+    function generateChartData() {
+        for (var i = 0; i < @Model.Item3.Count(); i++) {
+            var date = new Date(parseInt(array[i].date_added.replace(/\\|\"/g, "").substr(6)));
+            chartData.push({
+                date: date.toISOString(),
+                visits: array[i].happiness
+            });
+        }
+    }
+    function zoomChart() {
+        chart.zoomToIndexes(chartData.length - 40, chartData.length - 1);
+    }
+
+
+    var columnChartData = [
+        {
+            "name": "憤怒",
+            "points": @Math.Round(Convert.ToDouble(ViewData["anger"]) * 10, 1),
+            "color": "#FF0000"
+        },
+        {
+            "name": "藐視",
+            "points": @Math.Round(Convert.ToDouble(ViewData["contempt"]) * 10, 1),
+            "color": "#708090"
+        },
+        {
+            "name": "討厭",
+            "points": @Math.Round(Convert.ToDouble(ViewData["disgust"]) * 10, 1),
+            "color": "#00FF00"
+        },
+        {
+            "name": "恐懼",
+            "points": @Math.Round(Convert.ToDouble(ViewData["fear"]) * 10, 1),
+            "color": "#800080"
+        },
+        {
+            "name": "快樂",
+            "points": @Math.Round(Convert.ToDouble(ViewData["happiness"]) * 10, 1),
+            "color": "#FFFF00"
+        },
+        {
+            "name": "中立",
+            "points": @Math.Round(Convert.ToDouble(ViewData["neutral"]) * 10, 1),
+            "color": "#FFFF00"
+        },
+        {
+            "name": "憂傷",
+            "points": @Math.Round(Convert.ToDouble(ViewData["sadness"]) * 10, 1),
+            "color": "#0000CD"
+        },
+        {
+            "name": "驚奇",
+            "points": @Math.Round(Convert.ToDouble(ViewData["surprise"]) * 10, 1),
+            "color": "#FF8C00"
+        }
+    ];
+
+
+    AmCharts.ready(function () {
+        var chart = new AmCharts.AmSerialChart();
+        chart.dataProvider = columnChartData;
+        chart.categoryField = "name";
+        chart.startDuration = 1;
+        chart.autoMargins = false;
+        chart.marginRight = 0;
+        chart.marginLeft = 0;
+        chart.marginBottom = 0;
+        chart.marginTop = 0;
+
+        var categoryAxis = chart.categoryAxis;
+        categoryAxis.inside = true;
+        categoryAxis.axisAlpha = 0;
+        categoryAxis.gridAlpha = 0;
+        categoryAxis.tickLength = 0;
+
+        var valueAxis = new AmCharts.ValueAxis();
+        valueAxis.minimum = 0;
+        valueAxis.axisAlpha = 0;
+        valueAxis.maximum = 10;
+        valueAxis.dashLength = 4;
+        chart.addValueAxis(valueAxis);
+
+        var graph = new AmCharts.AmGraph();
+        graph.valueField = "points";
+        graph.customBulletField = "bullet";
+        graph.bulletOffset = 16;
+        graph.colorField = "color";
+        graph.bulletSize = 34;
+        graph.type = "column";
+        graph.fillAlphas = 0.8;
+        graph.cornerRadiusTop = 8;
+        graph.lineAlpha = 0;
+        graph.balloonText = "<span style='font-size:13px;'>[[category]]: <b>[[value]]</b></span>";
+        chart.addGraph(graph);
+
+        chart.write("emotion-summary");
+    });
+</script>

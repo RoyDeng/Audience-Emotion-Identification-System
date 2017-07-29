@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "購物車";
+}
+
+@model HashSet<AEIS.Models.CartItemModel>
+
+<section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall" data-options="{direction: 'reverse', settings_mode_oneelement_max_offset: '150'}">
+    <div class="divimage dzsparallaxer--target w-100 g-bg-repeat g-bg-primary" style="height: 200%;"></div>
+    <div class="container g-color-white g-z-index-1 g-py-100">
+        <h1 class="display-5 g-letter-spacing-1 g-mb-25">購物車</h1>
+    </div>
+</section>
+<section class="container g-py-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <form id="CartForm" action="UpdateCart" method="post">
+                    <table class="text-center w-100">
+                        <thead class="h6 g-brd-bottom g-brd-gray-light-v3 g-color-black text-uppercase">
+                            <tr>
+                                <th class="g-font-weight-400 text-left g-pb-20">商品</th>
+                                <th class="g-font-weight-400 g-width-130 g-pb-20">單價</th>
+                                <th class="g-font-weight-400 g-width-50 g-pb-20">數量</th>
+                                <th class="g-font-weight-400 g-width-130 g-pb-20">小計</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr class="g-brd-bottom g-brd-gray-light-v3">
+                                        <td class="text-left g-py-25">
+                                            <img class="d-inline-block g-width-100 mr-4" src="@Url.Action("GetProductImage", "Product", new RouteValueDictionary { { "ProductID", item.ProductID } })">
+                                            <div class="d-inline-block align-middle">
+                                                <h4 class="h6 g-color-black">@item.Name</h4>
+                                            </div>
+                                        </td>
+                                        <td class="g-color-gray-dark-v2 g-font-size-13">@Math.Round(Convert.ToDecimal(item.Price), 0) 元</td>
+                                        <td>
+                                            <div class="js-quantity input-group u-quantity-v1 g-width-80 g-brd-primary--focus">
+                                                <input class="js-result form-control text-center g-font-size-13 rounded-0 g-pa-0 quantity" type="text" name="q(@item.ProductID)" value="@item.Quantity" max="@item.Stock" readonly>
+                                                <div class="input-group-addon d-flex align-items-center g-width-30 g-bg-white g-font-size-12 rounded-0 g-px-5 g-py-6">
+                                                    <i class="js-plus g-color-gray g-color-primary--hover fa fa-angle-up"></i>
+                                                    <i class="js-minus g-color-gray g-color-primary--hover fa fa-angle-down"></i>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right g-color-black">
+                                            <span class="g-color-gray-dark-v2 g-font-size-13 mr-4">@Math.Round(Convert.ToDecimal(item.SubTotal), 0) 元</span>
+                                            <!--<span class="g-color-gray-dark-v4 g-color-black--hover g-cursor-pointer">
+                                                <i class="mt-auto fa fa-trash RemoveCartItem" ProductID="@item.ProductID"></i>
+                                            </span>-->
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div class="col-lg-4">
+                <div class="g-bg-gray-light-v5 g-pa-20 g-pb-50 mb-4">
+                    <h4 class="h6 text-uppercase mb-3">總結</h4>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="g-color-black">運費</span>
+                        <span class="g-color-black g-font-weight-300">@ViewData["Shipping"] 元</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="g-color-black">小計</span>
+                        <span class="g-color-black g-font-weight-300">@ViewData["Amount"] 元</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span class="g-color-black">總計</span>
+                        <span class="g-color-black g-font-weight-300">@ViewData["Total"] 元</span>
+                    </div>
+                </div>
+                @if (Session["Cart"] != null)
+                {
+                    <button class="btn btn-block u-btn-outline-black g-brd-gray-light-v1 g-bg-black--hover g-font-size-13 text-uppercase g-py-15 mb-4 CleanCart" type="button">清空購物車</button>
+                    <button class="btn btn-block u-btn-outline-black g-brd-gray-light-v1 g-bg-black--hover g-font-size-13 text-uppercase g-py-15 mb-4 UpdateCart" type="button">更新購物車</button>
+                    <button class="btn btn-block u-btn-primary g-font-size-13 text-uppercase g-py-15 mb-4" type="button" onclick="location.href='CheckOut'">結帳</button>
+                }
+            </div>
+        </div>
+    </div>
+</section>

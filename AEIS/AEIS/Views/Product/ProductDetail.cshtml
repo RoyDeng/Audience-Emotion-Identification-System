@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = Model.Item1.Name;
+}
+
+@model Tuple<AEIS.Models.ProductModel, AEIS.Models.ShopModel, AEIS.Models.UserModel>
+
+<section class="g-pt-50 g-pb-90">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="g-pt-10 g-mb-10">
+                    <img class="img-fluid" src="@Url.Action("GetProductImage", "Product", new RouteValueDictionary { { "ProductID", Model.Item1.ProductID } })">
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="g-px-40--lg g-py-70">
+                    <div class="g-mb-30">
+                        <h1 class="g-font-weight-300 mb-4">@Model.Item1.Name</h1>
+                        <p>@Model.Item1.Description</p>
+                    </div>
+                    <div class="g-mb-30">
+                        <h3 class="g-color-black g-font-size-17">
+                            <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="~/ShopDetail?ShopID=@Model.Item1.ShopID">
+                                @Model.Item2.Name
+                            </a>
+                        </h3>
+                        <span class="d-block g-color-gray-dark-v4 g-font-size-12">@Model.Item3.Username</span>
+                        <p class="g-color-gray-dark-v4 g-font-size-13 mb-0">@ViewData["categery"]</p>
+                    </div>
+                    <div class="g-mb-30">
+                        <h2 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-12 text-uppercase mb-2">單價</h2>
+                        <span class="g-color-black g-font-weight-500 g-font-size-30 mr-2">@Math.Round(Convert.ToDecimal(Model.Item1.Price), 0) 元</span><span class="g-font-size-15">/尚有 @Model.Item1.Quantity 件</span>
+                    </div>
+                    <div class="row g-mx-minus-5 g-mb-20">
+                        <div class="col g-px-5 g-mb-10">
+                            <button class="btn btn-block u-btn-primary g-font-size-12 text-uppercase g-py-15 g-px-25" type="button">我要購買</button>
+                        </div>
+                        <div class="col g-px-5 g-mb-10">
+                            <button class="btn btn-block u-btn-outline-black g-brd-gray-dark-v5 g-brd-black--hover g-color-gray-dark-v4 g-color-white--hover g-font-size-12 text-uppercase g-py-15 g-px-25 AddToCart" type="button" ProductID="@Model.Item1.ProductID">加入購物車</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if(ViewData["number"] != null)
+        {
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="embed-responsive embed-responsive-16by9 g-mb-60">
+                        <video preload="auto" controls="controls">
+                            <source src="~/uploads/@String.Format("{0}{1}", ViewData["number"], ".mp4")" type="video/mp4;">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>

@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "首頁";
+}
+
+@using AEIS.Models
+
+<section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall" data-options='{direction: "reverse", settings_mode_oneelement_max_offset: "150"}'>
+    <div class="divimage dzsparallaxer--target w-100 g-bg-pos-bottom-center" style="height: 120%; background-image: url(http://bizhi.pcze.com/zhuomian/1920x1200_1920x1080/29.jpg);"></div>
+
+    <div class="container g-py-200">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="g-color-white g-font-weight-300 g-font-size-40 g-line-height-1_2 mb-4">Audience Emotion Identification System</h3>
+                <span class="d-block g-color-white-opacity-0_8 g-font-size-16 mb-5"></span>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container g-py-100">
+    <div class="text-center g-mb-50">
+        <h2 class="h1 g-color-black g-font-weight-600">熱門商品</h2>
+    </div>
+    <div class="col-lg-12">
+        <div class="js-carousel"
+             data-infinite="1"
+             data-slides-show="3"
+             data-slides-scroll="3"
+             data-center-mode="1"
+             data-center-padding="1px"
+             data-pagi-classes="u-carousel-indicators-v1 g-absolute-centered--x g-bottom-minus-30">
+            @foreach (ProductModel p in Model)
+            {
+                <div class="js-slide">
+                    <div class="u-shadow-v21--hover g-brd-around g-brd-gray-light-v3 g-brd-transparent--hover g-bg-white--hover g-transition-0_3 g-cursor-pointer g-px-30 g-pt-30 g-pb-50 g-ml-minus-1">
+                        <div class="u-block-hover g-parent">
+                            <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_5 g-transition--ease-in-out" src="@Url.Action("GetProductImage", "Product", new RouteValueDictionary { { "ProductID", @p.ProductID } })">
+                            <div class="d-flex w-100 h-100 u-block-hover__additional--fade u-block-hover__additional--fade-in g-pos-abs g-top-0 g-left-0 g-transition-0_3 g-transition--ease-in g-pa-20">
+                                <ul class="align-items-end flex-column list-inline mt-auto ml-auto mb-0">
+                                    <li class="list-inline-item">
+                                        <a class="u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle AddToCart" ProductID="@p.ProductID">
+                                            <i class="fa fa-cart-plus"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="text-center g-pa-25">
+                            <h3 class="h5 g-color-black mb-1"><a href="~/ProductDetail?ProductID=@p.ProductID">@p.Name</a></h3>
+                            <p class="g-color-gray-dark-v4 mb-0">@Math.Round(Convert.ToDecimal(p.Price), 0) 元</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

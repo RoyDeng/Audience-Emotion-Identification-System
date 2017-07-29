@@ -1,0 +1,78 @@
+﻿<header id="js-header" class="u-header u-header--static u-header--show-hide u-header--change-appearance u-header--has-hidden-element"
+        data-header-fix-moment="500"
+        data-header-fix-effect="slide">
+    <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 g-py-15"
+         data-header-fix-moment-exclude="g-py-15"
+         data-header-fix-moment-classes="u-shadow-v18 g-py-7">
+        <div class="container">
+            <div class="d-lg-flex flex-md-row align-items-center g-pos-rel">
+                <button class="navbar-toggler navbar-toggler-right btn hidden-lg-up g-line-height-1 g-brd-none g-pa-0 g-pos-abs g-right-0" type="button"
+                        aria-label="Toggle navigation"
+                        aria-expanded="false"
+                        aria-controls="navBar"
+                        data-toggle="collapse"
+                        data-target="#navBar">
+                    <span class="hamburger hamburger--slider">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </span>
+                </button>
+                <a href="Index" class="navbar-brand">
+                    <img src="~/img/logo.png">
+                </a>
+                <div class="col g-mt-10 g-mt-0--lg g-px-0">
+                    <ul class="list-inline text-uppercase g-font-weight-600 text-lg-right u-header--hidden-element g-line-height-1 g-font-size-12 g-mt-minus-10 g-mx-minus-4 g-mb-20">
+                        @if (Session["username"] == null)
+                        {
+                            <li class="list-inline-item g-mx-4 g-mt-10">
+                                <a href="Login" class="g-color-gray-dark-v2 g-color-primary--hover g-text-underline--none--hover">登入</a>
+                            </li>
+                            <li class="list-inline-item g-mx-4 g-mt-10">|</li>
+                            <li class="list-inline-item g-mx-4 g-mt-10">
+                                <a href="Register" class="g-color-gray-dark-v2 g-color-primary--hover g-text-underline--none--hover">註冊</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="list-inline-item g-mx-4 g-mt-10">
+                                <a href="MyProduct" class="g-color-gray-dark-v2 g-color-primary--hover g-text-underline--none--hover">@Session["username"].ToString().ToLower()</a>
+                            </li>
+                            <li class="list-inline-item g-mx-4 g-mt-10">|</li>
+                            <li class="list-inline-item g-mx-4 g-mt-10">
+                                <a href="CreateProduct" class="g-color-gray-dark-v2 g-color-primary--hover g-text-underline--none--hover">我要賣東西</a>
+                            </li>
+                            <li class="list-inline-item g-mx-4 g-mt-10">|</li>
+                            <li class="list-inline-item g-mx-4 g-mt-10">
+                                <a href="Logout" class="g-color-gray-dark-v2 g-color-primary--hover g-text-underline--none--hover">登出</a>
+                            </li>
+                        }
+                    </ul>
+                    <nav class="navbar navbar-toggleable-md p-0">
+                        <div class="collapse navbar-collapse align-items-center flex-sm-row g-pt-10 g-pt-5--lg g-mr-40--sm" id="navBar">
+                            <ul class="navbar-nav text-uppercase g-font-weight-600 ml-auto">
+                                <li class="nav-item g-mx-20--lg">
+                                    <a href="Index" class="nav-link g-px-0">首頁</a>
+                                </li>
+                                <li class="nav-item g-mx-20--lg">
+                                    <a href="Videos" class="nav-link g-px-0">直播</a>
+                                </li>
+                                <li class="nav-item g-mx-20--lg">
+                                    <a href="Shops" class="nav-link g-px-0">商店</a>
+                                </li>
+                                <li class="nav-item g-mx-20--lg">
+                                    <a href="Products" class="nav-link g-px-0">商品</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="u-basket d-inline-block g-valign-middle g-mr-30 g-pt-8">
+                            <a href="Cart" class="u-icon-v1 g-color-main g-text-underline--none--hover g-width-20 g-height-20">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

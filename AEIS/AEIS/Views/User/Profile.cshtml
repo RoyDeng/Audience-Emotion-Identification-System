@@ -1,0 +1,147 @@
+﻿@{
+    ViewBag.Title = "會員設定";
+}
+
+@model Tuple<AEIS.Models.UserModel, AEIS.Models.ShopModel>
+
+<section class="g-mb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 g-mb-50 g-mb-0--lg">
+                <div class="list-group list-group-border-0 g-mb-40">
+                    <a href="MyProduct" class="list-group-item list-group-item-action justify-content-between">
+                        <span><i class="icon-home g-pos-rel g-top-1 g-mr-8"></i>我的商品</span>
+                    </a>
+                    <a href="MyOrder" class="list-group-item list-group-item-action justify-content-between">
+                        <span><i class="icon-notebook g-pos-rel g-top-1 g-mr-8"></i>訂單查詢</span>
+                    </a>
+                    <a href="Profile" class="list-group-item list-group-item-action justify-content-between active">
+                        <span><i class="icon-layers g-pos-rel g-top-1 g-mr-8"></i>會員設定</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <ul class="nav nav-justified u-nav-v1-1 u-nav-primary g-brd-bottom--md g-brd-bottom-2 g-brd-primary g-mb-20" role="tablist" data-target="nav-1-1-default-hor-left-underline" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-primary g-mb-20">
+                    <li class="nav-item">
+                        <a class="nav-link g-py-10 active" data-toggle="tab" href="#profile" role="tab">個人資料</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link g-py-10" data-toggle="tab" href="#shop" role="tab">商店</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link g-py-10" data-toggle="tab" href="#security" role="tab">安全性</a>
+                    </li>
+                </ul>
+                <div id="nav-1-1-default-hor-left-underline" class="tab-content">
+                    <div class="tab-pane fade show active" id="profile" role="tabpanel">
+                        <form action="~/UpdateUserProcess" method="post">
+                            <div class="form-group row g-mb-25">
+                                <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">姓氏</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group g-brd-primary--focus">
+                                        <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" name="lastname" type="text" value="@Model.Item1.LastName" placeholder="姓氏">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row g-mb-25">
+                                <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">姓名</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group g-brd-primary--focus">
+                                        <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" name="firstname" type="text" value="@Model.Item1.FirstName" placeholder="姓名">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row g-mb-25">
+                                <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">Email</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group g-brd-primary--focus">
+                                        <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" name="email" type="email" value="@Model.Item1.Email" placeholder="Email">
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="g-brd-gray-light-v4 g-my-25">
+                            <div class="text-sm-right">
+                                <button class="btn u-btn-primary rounded-0 g-py-12 g-px-25" type="submit">儲存</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="shop" role="tabpanel">
+                        <form action="~/ModifyShopProcess" method="post">
+                            <div class="form-group row g-mb-25">
+                                <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">名稱</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group g-brd-primary--focus">
+                                        <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" value="@Model.Item2.Name" type="text" name="name" placeholder="名稱">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row g-mb-25">
+                                <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">描述</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group g-brd-primary--focus">
+                                        <textarea class="form-control form-control-md rounded-0" name="description" rows="6">@Model.Item2.Description</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="g-brd-gray-light-v4 g-my-25">
+                            <div class="text-sm-right">
+                                <input type="hidden" name="type" value="@((bool)ViewData["type"]==false?"Create":"Update")" />
+                                <button class="btn u-btn-primary rounded-0 g-py-12 g-px-25" type="submit">儲存</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="security" role="tabpanel">
+                        <form action="~/ChangePasswordProcess" method="post">
+                            <div class="form-group row g-mb-25">
+                                <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">舊密碼</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group g-brd-primary--focus">
+                                        <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="password" name="old_password" placeholder="舊密碼">
+                                        <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
+                                            <i class="icon-lock"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row g-mb-25">
+                                <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">新密碼</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group g-brd-primary--focus">
+                                        <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="password" name="new_password" placeholder="新密碼">
+                                        <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
+                                            <i class="icon-lock"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row g-mb-25">
+                                <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">確認新密碼</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group g-brd-primary--focus">
+                                        <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="password" name="new_password2" placeholder="確認新密碼">
+                                        <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
+                                            <i class="icon-lock"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @if (ViewData["msg"] != null)
+                            {
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    @ViewData["msg"]
+                                </div>
+                            }
+                            <hr class="g-brd-gray-light-v4 g-my-25">
+                            <div class="text-sm-right">
+                                <button class="btn u-btn-primary rounded-0 g-py-12 g-px-25" type="submit">儲存</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

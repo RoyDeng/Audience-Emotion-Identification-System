@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="font-primary">
+<head>
+    <title>AEIS | @ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700%7Csubset=cyrillic,latin" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/jquery.fancybox.css">
+    <link rel="stylesheet" href="~/css/animate.css">
+    <link rel="stylesheet" href="~/css/unify.css">
+    <link rel="stylesheet" href="~/css/slick.css">
+    <link rel="stylesheet" href="~/css/dzsparallaxer.css">
+    <link rel="stylesheet" href="~/css/scroller.css">
+    <link rel="stylesheet" href="~/css/plugin.css">
+    <link rel="stylesheet" href="~/css/hs.megamenu.css">
+    <link rel="stylesheet" href="~/css/hamburgers.min.css">
+    <link rel="stylesheet" href="~/css/jquery.mCustomScrollbar.min.css">
+</head>
+<body>
+    @Html.Partial("Header")
+    <main>
+        @RenderBody()
+        @Html.Partial("Footer")
+    </main>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/tether.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/masonry.pkgd.min.js"></script>
+    <script src="~/js/slick.js"></script>
+    <script src="~/js/jquery.fancybox.min.js"></script>
+    <script src="~/js/dzsparallaxer.js"></script>
+    <script src="~/js/scroller.js"></script>
+    <script src="~/js/plugin.js"></script>
+    <script src="~/js/jquery.fancybox.min.js"></script>
+    <script src="~/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/js/hs.core.js"></script>
+    <script src="~/js/hs.header.js"></script>
+    <script src="~/js/hs.hamburgers.js"></script>
+    <script src="~/js/hs.count-qty.js"></script>
+    <script src="~/js/hs.dropdown.js"></script>
+    <script src="~/js/hs.scrollbar.js"></script>
+    <script src="~/js/hs.popup.js"></script>
+    <script src="~/js/hs.carousel.js"></script>
+    <script src="~/js/hs.sticky-block.js"></script>
+    <script src="~/js/hs.go-to.js"></script>
+    <script>
+        ;(function ($) {
+        'use strict';
+        $(document).on('ready', function () {
+            $.HSCore.components.HSHeader.init($('#js-header'));
+            $.HSCore.helpers.HSHamburgers.init('.hamburger');
+
+            $.HSCore.components.HSDropdown.init($('[data-dropdown-target]'), {
+                afterOpen: function(){
+                    $(this).find('input[type="search"]').focus();
+                }
+            });
+
+            $.HSCore.components.HSScrollBar.init($('.js-scrollbar'));
+
+            $('.masonry-grid').imagesLoaded().then(function () {
+                $('.masonry-grid').masonry({
+                    columnWidth: '.masonry-grid-sizer',
+                    itemSelector: '.masonry-grid-item',
+                    percentPosition: true
+                });
+            });
+
+            $.HSCore.components.HSCarousel.init('.js-carousel');
+
+            $.HSCore.components.HSPopup.init('.js-fancybox');
+            $.HSCore.components.HSCountQty.init('.js-quantity');
+        });
+        })(jQuery);
+    </script>
+    <script>
+        $(document).on('ready', function () {
+        $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        ;(function ($) {
+        'use strict';
+        $(document).on('ready', function () {
+            $.HSCore.components.HSGoTo.init('.js-go-to');
+        });
+
+        $(window).on('load', function () {
+            $.HSCore.components.HSStickyBlock.init('.js-sticky-block');
+        });
+        })(jQuery);
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".AddToCart").click(function () {
+                var ProductID = $.param({ "ProductID": $(this).attr("ProductID") });
+                $.post("AddToCart", ProductID, function (msg) {
+                    alert(msg);
+                });
+            });
+            /*$(".RemoveCartItem").click(function () {
+                刪除購物車項目
+            });*/
+            $(".UpdateCart").click(function () {
+                CartForm.submit();
+            });
+            $(".CleanCart").click(function () {
+                document.location = "CleanCart";
+            });
+        });
+    </script>
+</body>
+</html>

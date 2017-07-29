@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "商品";
+}
+
+@using AEIS.Models
+
+<section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall" data-options="{direction: 'reverse', settings_mode_oneelement_max_offset: '150'}">
+    <div class="divimage dzsparallaxer--target w-100 g-bg-repeat g-bg-primary" style="height: 200%;"></div>
+    <div class="container g-color-white g-z-index-1 g-py-100">
+        <h2 class="h1 text-uppercase g-font-weight-300 g-mb-30">商品</h2>
+        <form class="g-width-60x--md mx-auto" action="~/Products" method="get">
+            <div class="form-group g-mb-20">
+                <div class="input-group u-shadow-v21 rounded g-mb-15">
+                    <input class="form-control form-control-md g-brd-white g-font-size-16 border-right-0 pr-0 g-py-15" type="text" name="name" value="@(ViewData["name"]==null?"":ViewData["name"])" placeholder="搜尋商品">
+                    <input type="hidden" name="category" value="@ViewData["cat"]">
+                    <div class="input-group-addon d-flex align-items-center g-bg-white g-brd-white g-color-gray-light-v1 g-pa-2">
+                        <button class="btn u-btn-primary g-font-size-16 g-py-15 g-px-20" type="submit">
+                            <i class="fa fa-search g-pos-rel g-top-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<section class="g-pt-50 g-pb-90">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 g-pr-40--lg g-mb-50 g-mb-0--lg">
+                <h2 class="h5 text-uppercase g-color-gray-dark-v1">種類</h2>
+                <hr class="g-brd-gray-light-v4 g-my-15">
+                <ul class="list-unstyled g-mb-40">
+                    <li class="my-3">
+                        <a class="d-flex justify-content-between u-link-v5 g-color-gray-dark-v1@((int)ViewData["cat"]==0?"'--active'":"") g-parent" href="Products?name=@ViewData["name"]">
+                            全部
+                        </a>
+                    </li>
+                    @foreach (KeyValuePair<int, string> kv in (Dictionary<int, string>)ViewData["category"])
+                    {
+                        <li class="my-3">
+                            <a class="d-flex justify-content-between u-link-v5 g-color-gray-dark-v1@((int)ViewData["cat"]==kv.Key?"'--active'":"") g-parent" href="Products?name=@ViewData["name"]&category=@kv.Key">
+                                @kv.Value
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="col-lg-9">
+                <div class="row">
+                    @foreach (ProductModel p in Model)
+                    {
+                        <div class="col-lg-6 g-mb-30">
+                            <div class="u-shadow-v21--hover g-brd-around g-brd-gray-light-v3 g-brd-transparent--hover g-bg-white--hover g-transition-0_3 g-cursor-pointer g-px-30 g-pt-30 g-pb-50 g-ml-minus-1">
+                                <div class="u-block-hover g-parent">
+                                    <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_5 g-transition--ease-in-out" src="@Url.Action("GetProductImage", "Product", new RouteValueDictionary { { "ProductID", @p.ProductID } })">
+                                    <div class="d-flex w-100 h-100 u-block-hover__additional--fade u-block-hover__additional--fade-in g-pos-abs g-top-0 g-left-0 g-transition-0_3 g-transition--ease-in g-pa-20">
+                                        <ul class="align-items-end flex-column list-inline mt-auto ml-auto mb-0">
+                                            <li class="list-inline-item">
+                                                <a class="u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle AddToCart" ProductID="@p.ProductID">
+                                                    <i class="fa fa-cart-plus"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="text-center g-pa-25">
+                                    <h3 class="h5 g-color-black mb-1"><a href="~/ProductDetail?ProductID=@p.ProductID">@p.Name</a></h3>
+                                    <p class="g-color-gray-dark-v4 mb-0">@Math.Round(Convert.ToDecimal(p.Price), 0) 元</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <hr class="g-brd-gray-light-v4 g-mt-10 g-mb-40">
+                <nav class="g-mb-50" aria-label="Page Navigation">
+                    <ul class="list-inline">
+                        @Html.Raw(ViewData["pages"])
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
