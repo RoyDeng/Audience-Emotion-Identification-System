@@ -24,6 +24,30 @@ namespace AEIS.Controllers
             return View(cart);
         }
 
+        public ActionResult WantToBuy(int? ProductID)
+        {
+            HashSet<Models.CartItemModel> cart;
+            if (Session["Cart"] == null) cart = new HashSet<Models.CartItemModel>();
+            else cart = Session["Cart"] as HashSet<Models.CartItemModel>;
+            Models.CartItemModel item = new Models.CartItemModel();
+            item.ProductID = ProductID.Value;
+            if (!cart.Contains(item))
+            {
+                Dictionary<string, object> result = GetCartProductInfo(ProductID.Value);
+
+                item.Name = result["name"].ToString();
+                item.Price = Convert.ToDecimal(result["price"]);
+                item.Quantity = 1;
+                item.Stock = Convert.ToInt32(result["quantity"]);
+
+                cart.Add(item);
+                Session["Cart"] = cart;
+            }
+            double total = 0;
+            foreach (var c in cart) total += Convert.ToDouble(c.SubTotal);
+            return RedirectToAction("Index", "Cart");
+        }
+
         public string AddToCart(int? ProductID)
         {
             HashSet<Models.CartItemModel> cart;

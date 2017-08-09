@@ -253,6 +253,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
+    <Content Include="img\bg.png" />
     <Content Include="img\logo.png" />
     <Content Include="js\amcharts.js" />
     <Content Include="js\bob.the.binder.latest.js" />

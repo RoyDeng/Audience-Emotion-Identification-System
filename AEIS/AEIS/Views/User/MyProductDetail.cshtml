@@ -97,7 +97,7 @@
             ((IEnumerable<EmotionModel>)Model.Item3).Select(emotion => new
             {
                 date_added = emotion.DateAdded,
-                happiness = emotion.Happiness
+                happiness = @Math.Round(Convert.ToDouble(emotion.Happiness) * 100, 1)
             })
         )
     );
@@ -156,42 +156,42 @@
     var columnChartData = [
         {
             "name": "憤怒",
-            "points": @Math.Round(Convert.ToDouble(ViewData["anger"]) * 10, 1),
+            "points": @Math.Round(Convert.ToDouble(ViewData["anger"]) * 100, 1),
             "color": "#FF0000"
         },
         {
             "name": "藐視",
-            "points": @Math.Round(Convert.ToDouble(ViewData["contempt"]) * 10, 1),
+            "points": @Math.Round(Convert.ToDouble(ViewData["contempt"]) * 100, 1),
             "color": "#708090"
         },
         {
             "name": "討厭",
-            "points": @Math.Round(Convert.ToDouble(ViewData["disgust"]) * 10, 1),
+            "points": @Math.Round(Convert.ToDouble(ViewData["disgust"]) * 100, 1),
             "color": "#00FF00"
         },
         {
             "name": "恐懼",
-            "points": @Math.Round(Convert.ToDouble(ViewData["fear"]) * 10, 1),
+            "points": @Math.Round(Convert.ToDouble(ViewData["fear"]) * 100, 1),
             "color": "#800080"
         },
         {
             "name": "快樂",
-            "points": @Math.Round(Convert.ToDouble(ViewData["happiness"]) * 10, 1),
+            "points": @Math.Round(Convert.ToDouble(ViewData["happiness"]) * 100, 1),
             "color": "#FFFF00"
         },
         {
             "name": "中立",
-            "points": @Math.Round(Convert.ToDouble(ViewData["neutral"]) * 10, 1),
+            "points": @Math.Round(Convert.ToDouble(ViewData["neutral"]) * 100, 1),
             "color": "#FFFF00"
         },
         {
             "name": "憂傷",
-            "points": @Math.Round(Convert.ToDouble(ViewData["sadness"]) * 10, 1),
+            "points": @Math.Round(Convert.ToDouble(ViewData["sadness"]) * 100, 1),
             "color": "#0000CD"
         },
         {
             "name": "驚奇",
-            "points": @Math.Round(Convert.ToDouble(ViewData["surprise"]) * 10, 1),
+            "points": @Math.Round(Convert.ToDouble(ViewData["surprise"]) * 100, 1),
             "color": "#FF8C00"
         }
     ];
@@ -217,7 +217,7 @@
         var valueAxis = new AmCharts.ValueAxis();
         valueAxis.minimum = 0;
         valueAxis.axisAlpha = 0;
-        valueAxis.maximum = 10;
+        valueAxis.maximum = 100;
         valueAxis.dashLength = 4;
         chart.addValueAxis(valueAxis);
 

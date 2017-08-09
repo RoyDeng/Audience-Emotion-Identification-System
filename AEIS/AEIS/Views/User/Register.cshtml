@@ -13,39 +13,39 @@
                     <form class="g-py-15" action="~/RegisterProcess" method="post">
                         <div class="mb-4">
                             <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">使用者名稱</label>
-                            <input id="username" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" name="username" type="text" placeholder="使用者名稱">
+                            <input id="username" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" name="username" type="text" placeholder="使用者名稱" required="required">
                             <span id="UsernameCheckResult"></span>
                         </div>
                         <div class="row">
                             <div class="col-xs-12 col-sm-6 mb-4">
                                 <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">姓氏</label>
-                                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" name="lastname" type="text" placeholder="姓氏">
+                                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" name="lastname" type="text" placeholder="姓氏" required="required">
                             </div>
                             <div class="col-xs-12 col-sm-6 mb-4">
                                 <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">姓名</label>
-                                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" name="firstname" type="text" placeholder="姓名">
+                                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" name="firstname" type="text" placeholder="姓名" required="required">
                             </div>
                         </div>
                         <div class="mb-4">
                             <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Email</label>
-                            <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" name="email" type="email" placeholder="Email">
+                            <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" name="email" type="email" placeholder="Email" required="required">
                         </div>
                         <div class="row">
                             <div class="col-xs-12 col-sm-6 mb-4">
                                 <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">密碼</label>
-                                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="password" placeholder="密碼">
+                                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="password" placeholder="密碼" required="required">
                             </div>
 
                             <div class="col-xs-12 col-sm-6 mb-4">
                                 <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">確認密碼</label>
-                                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" name="password" type="password" placeholder="確認密碼">
+                                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" name="password" type="password" placeholder="確認密碼" required="required">
                             </div>
                         </div>
 
                         <div class="row justify-content-between mb-5">
                             <div class="col-8 align-self-center">
                                 <label class="form-check-inline u-check g-color-gray-dark-v5 g-font-size-13 g-pl-25">
-                                    <input class="hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                                    <input class="hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox" required>
                                     <div class="u-check-icon-checkbox-v6 g-absolute-centered--y g-left-0">
                                         <i class="fa" data-check-icon="&#xf00c"></i>
                                     </div>
@@ -69,14 +69,14 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#username").blur(function () {
-            var vv = $("#username").val();
-            var pp = $.param({ "username": vv });
-            $.get("CheckUsernameDuplicate", pp, function (xx) {
-                if (xx == "y") {
+            var username = $("#username").val();
+            var val = $.param({ "username": username });
+            $.get("CheckUsernameDuplicate", val, function (msg) {
+                if (msg == "y") {
                     $("#UsernameCheckResult").text("帳號已被使用");
                     $("#UsernameCheckResult").css("color", "red");
                 }
-                else if (xx == "n") {
+                else if (msg == "n") {
                     $("#UsernameCheckResult").text("帳號可使用");
                     $("#UsernameCheckResult").css("color", "blue");
                 }

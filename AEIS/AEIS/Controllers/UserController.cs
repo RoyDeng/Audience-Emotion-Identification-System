@@ -239,7 +239,7 @@ namespace AEIS.Controllers
                         video.Number = rs["number"].ToString();
                         video.DateStart = rs["date_start"].ToString();
                         video.DateEnd = rs["date_end"].ToString();
-                        video.Viewed = Convert.ToInt32(rs["viewed"]);
+                        video.Viewed = rs["viewed"] != DBNull.Value ? Convert.ToInt32(rs["viewed"]) : 0;
                         product.ProductID = Convert.ToInt32(rs["product_id"]);
                         product.Name = rs["name"].ToString();
                         product.Description = rs["description"].ToString();
@@ -273,7 +273,7 @@ namespace AEIS.Controllers
                 }
                 using (MySqlConnection con = new MySqlConnection(constr))
                 {
-                    string query = "SELECT AVG(happiness) AS happiness, date_added FROM emotion AS e INNER JOIN video AS v ON e.video_id=v.video_id WHERE e.date_added BETWEEN v.date_start AND v.date_end AND v.product_id=@product_id GROUP BY UNIX_TIMESTAMP(e.date_added) DIV 10";
+                    string query = "SELECT AVG(happiness) AS happiness, date_added FROM emotion AS e INNER JOIN video AS v ON e.video_id=v.video_id WHERE v.product_id=@product_id GROUP BY UNIX_TIMESTAMP(e.date_added) DIV 10";
                     using (MySqlCommand cmd = new MySqlCommand(query))
                     {
                         cmd.Connection = con;
@@ -488,9 +488,13 @@ namespace AEIS.Controllers
                             cmd2.Dispose();
                             con.Close();
                         }
-                        System.Net.Mail.SmtpClient mailServer = new System.Net.Mail.SmtpClient("msa.hinet.net");
+                        System.Net.Mail.SmtpClient mailServer = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
+                        mailServer.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+                        mailServer.EnableSsl = true;
+                        mailServer.UseDefaultCredentials = false;
+                        mailServer.Credentials = new System.Net.NetworkCredential("xoxo479594652@gmail.com", "kprcttnpgqsbcsgh");
                         System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
-                        mail.From = new System.Net.Mail.MailAddress("xoxo4795946@yahoo.com.tw", "AEIS");
+                        mail.From = new System.Net.Mail.MailAddress("xoxo479594652@gmail.com", "AEIS");
                         mail.To.Add(new System.Net.Mail.MailAddress(u.Email));
                         mail.Subject = "AEIS密碼變更通知";
                         mail.SubjectEncoding = System.Text.Encoding.UTF8;

@@ -244,6 +244,13 @@ namespace AEIS
                 defaults: new { controller = "Cart", action = "Index", id = UrlParameter.Optional }
             );
 
+            //我要購買
+            routes.MapRoute(
+                name: "WantToBuy",
+                url: "WantToBuy/{action}/{id}",
+                defaults: new { controller = "Cart", action = "WantToBuy", id = UrlParameter.Optional }
+            );
+
             //加入購物車
             routes.MapRoute(
                 name: "AddToCart",
