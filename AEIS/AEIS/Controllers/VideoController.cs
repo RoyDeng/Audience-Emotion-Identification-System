@@ -134,7 +134,7 @@ namespace AEIS.Controllers
                 string constr = ConfigurationManager.ConnectionStrings["MySQL"].ConnectionString;
                 using (MySqlConnection con = new MySqlConnection(constr))
                 {
-                    string query = string.Format("SELECT p.product_id, category_id, name, description, quantity, price, title, number FROM video AS v, product AS p WHERE p.product_id=@product_id");
+                    string query = string.Format("SELECT p.product_id, category_id, name, description, quantity, price, title, number FROM video AS v INNER JOIN product AS p ON v.product_id=p.product_id WHERE p.product_id=@product_id");
                     using (MySqlCommand cmd = new MySqlCommand(query))
                     {
                         cmd.Connection = con;
