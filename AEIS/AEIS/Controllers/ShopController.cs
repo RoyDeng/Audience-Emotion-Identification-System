@@ -20,25 +20,25 @@ namespace AEIS.Controllers
             total = (int)Math.Ceiling(total / 12.0);
             StringBuilder sb = new StringBuilder();
             if (name != null)
+            {
+                if (total > 1 && (page.Value != 1 || page.Value > 1)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Shops?page={0}&name={1}'><span aria-hidden='true'><i class='fa fa-angle-left'></i></span></a></li>", page.Value - 1, name));
                 for (int i = 1; i <= total; i++)
                 {
-                    if (total > 1 && (i != 1 || i > 1)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Shops?page={0}&name={1}'><span aria-hidden='true'><i class='fa fa-angle-left'></i></span></a></li>", i - 1, name));
-                    if (i == page.Value)
-                        sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 u-pagination-v1-5--active rounded g-pa-4-11' href='Shops?page={0}&name={1}'>{0}</a></li>", i, name));
-                    else
-                        sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-11' href='Shops?page={0}&name={1}'>{0}</a></li>", i, name));
-                    if (total > 1 && (i < total || i != total)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Shops?page={0}&name={1}'><span aria-hidden='true'><i class='fa fa-angle-right'></i></span></a></li>", i + 1, name));
+                    if (i == page.Value) sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 u-pagination-v1-5--active rounded g-pa-4-11' href='Shops?page={0}&name={1}'>{0}</a></li>", i, name));
+                    else sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-11' href='Shops?page={0}&name={1}'>{0}</a></li>", i, name));
                 }
+                if (total > 1 && (page.Value < total || page.Value != total)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Shops?page={0}&name={1}'><span aria-hidden='true'><i class='fa fa-angle-right'></i></span></a></li>", page.Value + 1, name));
+            }
             else
+            {
+                if (total > 1 && (page.Value != 1 || page.Value > 1)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Shops?page={0}'><span aria-hidden='true'><i class='fa fa-angle-left'></i></span></a></li>", page.Value - 1));
                 for (int i = 1; i <= total; i++)
                 {
-                    if (total > 1 && (i != 1 || i > 1)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Shops?page={0}'><span aria-hidden='true'><i class='fa fa-angle-left'></i></span></a></li>", i - 1));
-                    if (i == page.Value)
-                        sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 u-pagination-v1-5--active rounded g-pa-4-11' href='Shops?page={0}'>{0}</a></li>", i));
-                    else
-                        sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-11' href='Shops?page={0}'>{0}</a></li>", i));
-                    if (total > 1 && (i < total || i != total)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Shops?page={0}'><span aria-hidden='true'><i class='fa fa-angle-right'></i></span></a></li>", i + 1));
+                    if (i == page.Value) sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 u-pagination-v1-5--active rounded g-pa-4-11' href='Shops?page={0}'>{0}</a></li>", i));
+                    else sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-11' href='Shops?page={0}'>{0}</a></li>", i));
                 }
+                if (total > 1 && (page.Value < total || page.Value != total)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Shops?page={0}'><span aria-hidden='true'><i class='fa fa-angle-right'></i></span></a></li>", page.Value + 1));
+            }
             ViewData["pages"] = sb.ToString();
             string query = "";
             List<Models.ShopModel> shops = new List<Models.ShopModel>();
@@ -100,15 +100,13 @@ namespace AEIS.Controllers
             int total = TotalShopDetailCount();
             total = (int)Math.Ceiling(total / 6.0);
             StringBuilder sb = new StringBuilder();
+            if (total > 1 && (page.Value != 1 || page.Value > 1)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='ShopDetail?ShopID={0}&page={1}'><span aria-hidden='true'><i class='fa fa-angle-left'></i></span></a></li>", ShopID, page.Value - 1));
             for (int i = 1; i <= total; i++)
             {
-                if (total > 1 && (i != 1 || i > 1)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='ShopDetail?ShopID={0}&page={1}'><span aria-hidden='true'><i class='fa fa-angle-left'></i></span></a></li>", ShopID, i - 1));
-                if (i == page.Value)
-                    sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 u-pagination-v1-5--active rounded g-pa-4-11' href='ShopDetail?ShopID={0}&page={1}'>{1}</a></li>", ShopID, i));
-                else
-                    sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-11' href='ShopDetail?ShopID={0}&page={1}'>{1}</a></li>", ShopID, i));
-                if (total > 1 && (i < total || i != total)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='ShopDetail?ShopID={0}&page={1}'><span aria-hidden='true'><i class='fa fa-angle-right'></i></span></a></li>", ShopID, i + 1));
+                if (i == page.Value) sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 u-pagination-v1-5--active rounded g-pa-4-11' href='ShopDetail?ShopID={0}&page={1}'>{1}</a></li>", ShopID, i));
+                else sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-11' href='ShopDetail?ShopID={0}&page={1}'>{1}</a></li>", ShopID, i));
             }
+            if (total > 1 && (page.Value < total || page.Value != total)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='ShopDetail?ShopID={0}&page={1}'><span aria-hidden='true'><i class='fa fa-angle-right'></i></span></a></li>", ShopID, page.Value + 1));
             ViewData["pages"] = sb.ToString();
             Dictionary<string, object> rs = null;
             Models.ShopModel shop = new Models.ShopModel();
@@ -235,7 +233,7 @@ namespace AEIS.Controllers
                         cmd.Dispose();
                         con.Close();
                     }
-                    return RedirectToAction("Profile", "User");
+                    return RedirectToAction("Profile", "User", new { area = "" });
                 }
                 else
                 {
@@ -252,7 +250,7 @@ namespace AEIS.Controllers
                         cmd.Dispose();
                         con.Close();
                     }
-                    return RedirectToAction("Profile", "User");
+                    return RedirectToAction("Profile", "User", new { area = "" });
                 }
             }
         }

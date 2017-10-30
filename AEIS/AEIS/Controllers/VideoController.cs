@@ -21,25 +21,25 @@ namespace AEIS.Controllers
             total = (int)Math.Ceiling(total / 12.0);
             StringBuilder sb = new StringBuilder();
             if (title != null)
+            {
+                if (total > 1 && (page.Value != 1 || page.Value > 1)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Videos?page={0}&title={1}'><span aria-hidden='true'><i class='fa fa-angle-left'></i></span></a></li>", page.Value - 1, title));
                 for (int i = 1; i <= total; i++)
                 {
-                    if (total > 1 && (i != 1 || i > 1)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Videos?page={0}&title={1}'><span aria-hidden='true'><i class='fa fa-angle-left'></i></span></a></li>", i - 1, title));
-                    if (i == page.Value)
-                        sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 u-pagination-v1-5--active rounded g-pa-4-11' href='Videos?page={0}&title={1}'>{0}</a></li>", i, title));
-                    else
-                        sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-11' href='Videos?page={0}&title={1}'>{0}</a></li>", i, title));
-                    if (total > 1 && (i < total || i != total)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Videos?page={0}&title={1}'><span aria-hidden='true'><i class='fa fa-angle-right'></i></span></a></li>", i + 1, title));
+                    if (i == page.Value) sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 u-pagination-v1-5--active rounded g-pa-4-11' href='Videos?page={0}&title={1}'>{0}</a></li>", i, title));
+                    else sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-11' href='Videos?page={0}&title={1}'>{0}</a></li>", i, title));
                 }
+                if (total > 1 && (page.Value < total || page.Value != total)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Videos?page={0}&title={1}'><span aria-hidden='true'><i class='fa fa-angle-right'></i></span></a></li>", page.Value + 1, title));
+            }
             else
+            {
+                if (total > 1 && (page.Value != 1 || page.Value > 1)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Videos?page={0}'><span aria-hidden='true'><i class='fa fa-angle-left'></i></span></a></li>", page.Value - 1));
                 for (int i = 1; i <= total; i++)
                 {
-                    if(total > 1 && (i != 1 || i > 1)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Videos?page={0}'><span aria-hidden='true'><i class='fa fa-angle-left'></i></span></a></li>", i - 1));
-                    if (i == page.Value)
-                        sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 u-pagination-v1-5--active rounded g-pa-4-11' href='Videos?page={0}'>{0}</a></li>", i));
-                    else
-                        sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-11' href='Videos?page={0}'>{0}</a></li>", i));
-                    if (total > 1 && (i < total || i != total)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Videos?page={0}'><span aria-hidden='true'><i class='fa fa-angle-right'></i></span></a></li>", i + 1));
+                    if (i == page.Value) sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 u-pagination-v1-5--active rounded g-pa-4-11' href='Videos?page={0}'>{0}</a></li>", i));
+                    else sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-11' href='Videos?page={0}'>{0}</a></li>", i));
                 }
+                if (total > 1 && (page.Value < total || page.Value != total)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Videos?page={0}'><span aria-hidden='true'><i class='fa fa-angle-right'></i></span></a></li>", page.Value + 1));
+            }
             ViewData["pages"] = sb.ToString();
             string query = "";
             List<Models.VideoModel> videos = new List<Models.VideoModel>();
@@ -97,7 +97,7 @@ namespace AEIS.Controllers
         public ActionResult CreateVideo()
         {
             if (Session["username"] != null) return View();
-            else return RedirectToAction("Login", "User");
+            else return Redirect("~/login");
         }
 
         public ActionResult StreamVideoProcess(Models.VideoModel v)
@@ -120,7 +120,7 @@ namespace AEIS.Controllers
                     cmd.Dispose();
                     con.Close();
                 }
-                return RedirectToAction("StreamVideo", "Video");
+                return Redirect("~/StreamVideo");
             }
         }
 
@@ -134,7 +134,7 @@ namespace AEIS.Controllers
                 string constr = ConfigurationManager.ConnectionStrings["MySQL"].ConnectionString;
                 using (MySqlConnection con = new MySqlConnection(constr))
                 {
-                    string query = string.Format("SELECT p.product_id, category_id, name, description, quantity, price, title, number FROM video AS v INNER JOIN product AS p ON v.product_id=p.product_id WHERE p.product_id=@product_id");
+                    string query = string.Format("SELECT video_id, p.product_id, category_id, name, description, quantity, price, title, number FROM video AS v INNER JOIN product AS p ON v.product_id=p.product_id WHERE p.product_id=@product_id");
                     using (MySqlCommand cmd = new MySqlCommand(query))
                     {
                         cmd.Connection = con;
@@ -151,6 +151,7 @@ namespace AEIS.Controllers
                         }
                         cmd.Dispose();
                         con.Close();
+                        video.VideoID = Convert.ToInt32(rs["video_id"]);
                         video.Title = rs["title"].ToString();
                         video.Number = rs["number"].ToString();
                         product.ProductID = Convert.ToInt32(rs["product_id"]);
@@ -163,7 +164,35 @@ namespace AEIS.Controllers
                 }
                 return View(Tuple.Create(video, product));
             }
-            else return RedirectToAction("Login", "User");
+            else return Redirect("~/login");
+        }
+
+        public JsonResult GetEmotions(int? VideoID)
+        {
+            Models.EmotionModel emotion = new Models.EmotionModel();
+            Dictionary<string, object> rs = null;
+            string constr = ConfigurationManager.ConnectionStrings["MySQL"].ConnectionString;
+            using (MySqlConnection con = new MySqlConnection(constr))
+            {
+                string query = string.Format("SELECT anger, contempt, disgust, fear, happiness, neutral, sadness, surprise FROM emotion WHERE video_id=@video_id ORDER BY date_added DESC LIMIT 1");
+                using (MySqlCommand cmd = new MySqlCommand(query))
+                {
+                    cmd.Connection = con;
+                    cmd.Parameters.Add("@video_id", MySqlDbType.Int32).Value = VideoID;
+                    con.Open();
+                    MySqlDataReader sdr = cmd.ExecuteReader();
+                    if (sdr.HasRows)
+                    {
+                        rs = new Dictionary<string, object>();
+                        sdr.Read();
+                        for (int i = 0; i < sdr.FieldCount; i++)
+                            rs.Add(sdr.GetName(i), sdr[i]);
+                        sdr.Close();
+                    }
+                    con.Close();
+                }
+            }
+            return Json(rs, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult WatchVideo(string Number)
@@ -243,35 +272,50 @@ namespace AEIS.Controllers
 
         public void UploadEmotionProcess(int VideoID, Emotion[] emotionResult)
         {
-            string constr = ConfigurationManager.ConnectionStrings["MySQL"].ConnectionString;
-            using (MySqlConnection con = new MySqlConnection(constr))
+            if (emotionResult != null && emotionResult.Count() > 0)
             {
-                string query = string.Format("INSERT INTO emotion(video_id, anger, contempt, disgust, fear, happiness, neutral, sadness, surprise, date_added) VALUES(@video_id, @anger, @contempt, @disgust, @fear, @happiness, @neutral, @sadness, @surprise, @date_added)");
-
-                using (MySqlCommand cmd = new MySqlCommand(query))
+                string constr = ConfigurationManager.ConnectionStrings["MySQL"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(constr))
                 {
-                    cmd.Connection = con;
-                    if (emotionResult != null && emotionResult.Length > 0)
+                    string query = string.Format("INSERT INTO emotion(video_id, anger, contempt, disgust, fear, happiness, neutral, sadness, surprise, date_added) VALUES(@video_id, @anger, @contempt, @disgust, @fear, @happiness, @neutral, @sadness, @surprise, @date_added)");
+
+                    using (MySqlCommand cmd = new MySqlCommand(query))
                     {
+                        cmd.Connection = con;
+                        float anger = 0;
+                        float contempt = 0;
+                        float disgust = 0;
+                        float fear = 0;
+                        float happiness = 0;
+                        float neutral = 0;
+                        float sadness = 0;
+                        float surprise = 0;
                         foreach (Emotion emotion in emotionResult)
                         {
-                            cmd.Parameters.Add("@video_id", MySqlDbType.Int32).Value = VideoID;
-                            cmd.Parameters.Add("@anger", MySqlDbType.Double).Value = Convert.ToDouble(emotion.Scores.Anger);
-                            cmd.Parameters.Add("@contempt", MySqlDbType.Double).Value = Convert.ToDouble(emotion.Scores.Contempt);
-                            cmd.Parameters.Add("@disgust", MySqlDbType.Double).Value = Convert.ToDouble(emotion.Scores.Disgust);
-                            cmd.Parameters.Add("@fear", MySqlDbType.Double).Value = Convert.ToDouble(emotion.Scores.Fear);
-                            cmd.Parameters.Add("@happiness", MySqlDbType.Double).Value = Convert.ToDouble(emotion.Scores.Happiness);
-                            cmd.Parameters.Add("@neutral", MySqlDbType.Double).Value = Convert.ToDouble(emotion.Scores.Neutral);
-                            cmd.Parameters.Add("@sadness", MySqlDbType.Double).Value = Convert.ToDouble(emotion.Scores.Sadness);
-                            cmd.Parameters.Add("@surprise", MySqlDbType.Double).Value = Convert.ToDouble(emotion.Scores.Surprise);
-                            cmd.Parameters.Add("@date_added", MySqlDbType.DateTime).Value = DateTime.Now;
-                            con.Open();
-                            cmd.ExecuteNonQuery();
-                            cmd.Dispose();
+                            anger = anger + emotion.Scores.Anger;
+                            contempt = contempt + emotion.Scores.Contempt;
+                            disgust = disgust + emotion.Scores.Disgust;
+                            fear = fear + emotion.Scores.Fear;
+                            happiness = happiness + emotion.Scores.Happiness;
+                            neutral = neutral + emotion.Scores.Neutral;
+                            sadness = sadness + emotion.Scores.Sadness;
+                            surprise = surprise + emotion.Scores.Surprise;
                         }
+                        cmd.Parameters.Add("@video_id", MySqlDbType.Int32).Value = VideoID;
+                        cmd.Parameters.Add("@anger", MySqlDbType.Double).Value = Convert.ToDouble(anger / emotionResult.Count());
+                        cmd.Parameters.Add("@contempt", MySqlDbType.Double).Value = Convert.ToDouble(contempt / emotionResult.Count());
+                        cmd.Parameters.Add("@disgust", MySqlDbType.Double).Value = Convert.ToDouble(disgust / emotionResult.Count());
+                        cmd.Parameters.Add("@fear", MySqlDbType.Double).Value = Convert.ToDouble(fear / emotionResult.Count());
+                        cmd.Parameters.Add("@happiness", MySqlDbType.Double).Value = Convert.ToDouble(happiness / emotionResult.Count());
+                        cmd.Parameters.Add("@neutral", MySqlDbType.Double).Value = Convert.ToDouble(neutral / emotionResult.Count());
+                        cmd.Parameters.Add("@sadness", MySqlDbType.Double).Value = Convert.ToDouble(sadness / emotionResult.Count());
+                        cmd.Parameters.Add("@surprise", MySqlDbType.Double).Value = Convert.ToDouble(surprise / emotionResult.Count());
+                        cmd.Parameters.Add("@date_added", MySqlDbType.DateTime).Value = DateTime.Now;
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                        con.Close();
                     }
-                    cmd.Dispose();
-                    con.Close();
                 }
             }
         }

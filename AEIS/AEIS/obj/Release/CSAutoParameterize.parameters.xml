@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="MySQL-Web.config Connection String" description="MySQL 應用程式在 web.config 中用來存取資料庫的連接字串。" defaultValue="server=ap-cdbr-azure-east-a.cloudapp.net;port=3306;database=aeis;uid=b8fe21661616ac;password=c45b63ee;Allow User Variables=True;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\xoxo4\\Desktop\\Audience-Emotion-Identification-System\\AEIS\\AEIS\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MySQL']/@connectionString" />
+  </parameter>
+</parameters>

@@ -17,29 +17,29 @@ namespace AEIS.Controllers
             if (page == null) page = 1;
             if (name == "") name = null;
             if (category == null) category = 0;
-            int total = TotalProductCount(name);
+            int total = TotalProductCount(name, category);
             total = (int)Math.Ceiling(total / 6.0);
             StringBuilder sb = new StringBuilder();
             if (name != null)
+            {
+                if (total > 1 && (page.Value != 1 || page.Value > 1)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Products?page={0}&name={1}&category={2}'><span aria-hidden='true'><i class='fa fa-angle-left'></i></span></a></li>", page.Value - 1, name, category));
                 for (int i = 1; i <= total; i++)
                 {
-                    if (total > 1 && (i != 1 || i > 1)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Products?page={0}&name={1}&category={2}'><span aria-hidden='true'><i class='fa fa-angle-left'></i></span></a></li>", i - 1, name, category));
-                    if (i == page.Value)
-                        sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 u-pagination-v1-5--active rounded g-pa-4-11' href='Products?page={0}&name={1}&category={2}'>{0}</a></li>", i, name, category));
-                    else
-                        sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-11' href='Products?page={0}&name={1}&category={2}'>{0}</a></li>", i, name, category));
-                    if (total > 1 && (i < total || i != total)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Products?page={0}&name={1}&category={2}'><span aria-hidden='true'><i class='fa fa-angle-right'></i></span></a></li>", i + 1, name, category));
+                    if (i == page.Value) sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 u-pagination-v1-5--active rounded g-pa-4-11' href='Products?page={0}&name={1}&category={2}'>{0}</a></li>", i, name, category));
+                    else sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-11' href='Products?page={0}&name={1}&category={2}'>{0}</a></li>", i, name, category));
                 }
+                if (total > 1 && (page.Value < total || page.Value != total)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Products?page={0}&name={1}&category={2}'><span aria-hidden='true'><i class='fa fa-angle-right'></i></span></a></li>", page.Value + 1, name, category));
+            }
             else
+            {
+                if (total > 1 && (page.Value != 1 || page.Value > 1)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Products?page={0}&category={1}'><span aria-hidden='true'><i class='fa fa-angle-left'></i></span></a></li>", page.Value - 1, category));
                 for (int i = 1; i <= total; i++)
                 {
-                    if (total > 1 && (i != 1 || i > 1)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Products?page={0}&category={1}'><span aria-hidden='true'><i class='fa fa-angle-left'></i></span></a></li>", i - 1, category));
-                    if (i == page.Value)
-                        sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 u-pagination-v1-5--active rounded g-pa-4-11' href='Products?page={0}&category={1}'>{0}</a></li>", i, category));
-                    else
-                        sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-11' href='Products?page={0}&category={1}'>{0}</a></li>", i, category));
-                    if (total > 1 && (i < total || i != total)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Products?page={0}&category={1}'><span aria-hidden='true'><i class='fa fa-angle-right'></i></span></a></li>", i + 1, category));
+                    if (i == page.Value) sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 u-pagination-v1-5--active rounded g-pa-4-11' href='Products?page={0}&category={1}'>{0}</a></li>", i, category));
+                    else sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-11' href='Products?page={0}&category={1}'>{0}</a></li>", i, category));
                 }
+                if (total > 1 && (page.Value < total || page.Value != total)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='Products?page={0}&category={1}'><span aria-hidden='true'><i class='fa fa-angle-right'></i></span></a></li>", page.Value + 1, category));
+            }
             ViewData["pages"] = sb.ToString();
             ViewData["name"] = name;
             ViewData["cat"] = category;
@@ -85,19 +85,28 @@ namespace AEIS.Controllers
             return View(products);
         }
 
-        public int TotalProductCount(string name)
+        public int TotalProductCount(string name, int? category)
         {
             int cnt = 0;
             string query = "";
             string constr = ConfigurationManager.ConnectionStrings["MySQL"].ConnectionString;
             using (MySqlConnection con = new MySqlConnection(constr))
             {
-                if (name != null) query = "SELECT COUNT(*) FROM product WHERE name LIKE @name";
-                else query = "SELECT COUNT(*) FROM product";
+                if (name != null)
+                {
+                    if (category != 0) query = "SELECT COUNT(*) FROM product WHERE name LIKE @name AND category_id=@category_id";
+                    else query = "SELECT COUNT(*) FROM product WHERE name LIKE @name";
+                }
+                else
+                {
+                    if (category != 0) query = "SELECT COUNT(*) FROM product WHERE category_id=@category_id";
+                    else query = "SELECT COUNT(*) FROM product";
+                }
                 using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {
                     con.Open();
                     if (name != null) cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = "%" + name + "%";
+                    if (category != 0) cmd.Parameters.Add("@category_id", MySqlDbType.Int32).Value = category;
                     cnt = Convert.ToInt32(cmd.ExecuteScalar());
                     con.Close();
                 }
@@ -114,7 +123,7 @@ namespace AEIS.Controllers
             string constr = ConfigurationManager.ConnectionStrings["MySQL"].ConnectionString;
             using (MySqlConnection con = new MySqlConnection(constr))
             {
-                string query = string.Format("SELECT p.product_id, category_id, p.shop_id, p.name, p.description, quantity, price, s.name AS shop_name, username, number FROM ((product AS p INNER JOIN shop AS s ON p.shop_id=s.shop_id) INNER JOIN user AS u ON s.user_id=u.user_id) INNER JOIN video AS v ON p.product_id=v.product_id WHERE p.product_id=@product_id");
+                string query = string.Format("SELECT p.product_id, p.category_id, p.shop_id, p.name, p.description, quantity, price, s.name AS shop_name, username, number FROM ((product AS p INNER JOIN shop AS s ON p.shop_id=s.shop_id) INNER JOIN user AS u ON s.user_id=u.user_id) INNER JOIN video AS v ON p.product_id=v.product_id WHERE p.product_id=@product_id");
 
                 using (MySqlCommand cmd = new MySqlCommand(query))
                 {
@@ -162,10 +171,10 @@ namespace AEIS.Controllers
                 else
                 {
                     ViewData["msg"] = "尚未建立商店!";
-                    return RedirectToAction("MyProduct", "User");
+                    return Redirect("~/myproduct");
                 }
             }
-            else return RedirectToAction("Login", "User");
+            else return Redirect("~/login");
         }
 
         public ActionResult ModifyProductProcess(Models.ProductModel p, HttpPostedFileBase Image)
@@ -199,7 +208,7 @@ namespace AEIS.Controllers
                     con.Close();
                 }
             }
-            return RedirectToAction("CreateVideo", "Video"); ;
+            return Redirect("~/createvideo");
         }
 
         public int GetUserID()

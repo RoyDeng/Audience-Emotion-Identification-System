@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "訂單明細 - " + Model.Item1.OrderID;
+}
+
+@using AEIS.Models
+@model Tuple<AEIS.Models.OrderModel, AEIS.Models.UserModel, List<AEIS.Models.OrderDetailModel>>
+
+<section class="container g-py-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="g-bg-gray-light-v5 g-pa-20 g-pb-50 mb-4">
+                    <h4 class="h6 text-uppercase mb-3">總結</h4>
+                    <div class="d-flex justify-content-between">
+                        <span class="g-color-black">總計</span>
+                        <span class="g-color-black g-font-weight-300">@Math.Round(Convert.ToDecimal(Model.Item1.Total), 0) 元</span>
+                    </div>
+                </div>
+                <div class="g-px-20 mb-5">
+                    <div class="d-flex justify-content-between g-brd-bottom g-brd-gray-light-v3 g-mb-15">
+                        <h4 class="h6 text-uppercase mb-3">訂單</h4>
+                        <span class="g-color-gray-dark-v4 g-color-black--hover g-cursor-pointer">
+                            <i class="fa fa-file"></i>
+                        </span>
+                    </div>
+                    <ul class="list-unstyled g-color-gray-dark-v4 g-font-size-15">
+                        <li class="g-my-3">編號:@Model.Item1.OrderID</li>
+                        <li class="g-my-3">成立時間:@Model.Item1.DateAdded</li>
+                    </ul>
+                </div>
+                <div class="g-px-20 mb-5">
+                    <div class="d-flex justify-content-between g-brd-bottom g-brd-gray-light-v3 g-mb-15">
+                        <h4 class="h6 text-uppercase mb-3">買家</h4>
+                        <span class="g-color-gray-dark-v4 g-color-black--hover g-cursor-pointer">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </div>
+                    <ul class="list-unstyled g-color-gray-dark-v4 g-font-size-15">
+                        <li class="g-my-3">姓名:@Model.Item2.LastName@Model.Item2.FirstName</li>
+                        <li class="g-my-3">Email:@Model.Item2.Email</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <table class="text-center w-100">
+                    <thead class="h6 g-brd-bottom g-brd-gray-light-v3 g-color-black text-uppercase">
+                        <tr>
+                            <th class="g-font-weight-400 text-left g-pb-20">商品</th>
+                            <th class="g-font-weight-400 g-width-130 g-pb-20">單價</th>
+                            <th class="g-font-weight-400 g-width-50 g-pb-20">數量</th>
+                            <th class="g-font-weight-400 g-width-130 g-pb-20">小計</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (OrderDetailModel od in Model.Item3)
+                        {
+                        <tr class="g-brd-bottom g-brd-gray-light-v3">
+                            <td class="text-left g-py-25">
+                                <img class="d-inline-block g-width-100 mr-4" src="@Url.Action("GetProductImage", "Product", new RouteValueDictionary { { "ProductID", @od.ProdcutID } })">
+                                <div class="d-inline-block align-middle">
+                                    <h4 class="h6 g-color-black">@od.Name</h4>
+                                </div>
+                            </td>
+                            <td class="g-color-gray-dark-v2 g-font-size-13">@Math.Round(Convert.ToDecimal(od.UnitePrice), 0) 元</td>
+                            <td class="g-color-gray-dark-v2 g-font-size-13">@od.Quantity</td>
+                            <td class="text-right g-color-black">
+                                <span class="g-color-gray-dark-v2 g-font-size-13 mr-4">@Math.Round(Convert.ToDecimal(od.UnitePrice * od.Quantity), 0) 元</span>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

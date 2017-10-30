@@ -43,16 +43,16 @@ namespace AEIS.Controllers
             if (cnt > 0)
             {
                 Session.Add("UserName", Username);
-                return RedirectToAction("Index", "Home");
+                return Redirect("~/index");
             }
-            else return RedirectToAction("Login", new { msg = "fail" });
+            else return Redirect("~/login");
         }
 
         public ActionResult Logout()
         {
             Session["UserName"] = "";
             Session.Remove("UserName");
-            return RedirectToAction("Index", "Home");
+            return Redirect("~/index");
         }
 
         public ActionResult Register()
@@ -85,7 +85,7 @@ namespace AEIS.Controllers
                     Session.Add("UserName", u.Username);
                 }
             }
-            return RedirectToAction("Index", "Home");
+            return Redirect("~/index");
         }
 
         public ActionResult Profile(string msg)
@@ -127,7 +127,7 @@ namespace AEIS.Controllers
                 ViewData["type"] = CheckShopDuplicate(GetUserID());
                 return View(Tuple.Create(user, shop));
             }
-            else return RedirectToAction("Login", "User");
+            else return Redirect("~/login");
         }
 
         public ActionResult MyProduct(int? page)
@@ -140,15 +140,13 @@ namespace AEIS.Controllers
                     int total = TotalMyProductCount();
                     total = (int)Math.Ceiling(total / 6.0);
                     StringBuilder sb = new StringBuilder();
+                    if (total > 1 && (page.Value != 1 || page.Value > 1)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='MyProduct?page={0}'><span aria-hidden='true'><i class='fa fa-angle-left'></i></span></a></li>", page.Value - 1));
                     for (int i = 1; i <= total; i++)
                     {
-                        if (total > 1 && (i != 1 || i > 1)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='MyProduct?page={0}'><span aria-hidden='true'><i class='fa fa-angle-left'></i></span></a></li>", i - 1));
-                        if (i == page.Value)
-                            sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 u-pagination-v1-5--active rounded g-pa-4-11' href='MyProduct?page={0}'>{0}</a></li>", i));
-                        else
-                            sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-11' href='MyProduct?page={0}'>{0}</a></li>", i));
-                        if (total > 1 && (i < total || i != total)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='MyProduct?page={0}'><span aria-hidden='true'><i class='fa fa-angle-right'></i></span></a></li>", i + 1));
+                        if (i == page.Value) sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 u-pagination-v1-5--active rounded g-pa-4-11' href='MyProduct?page={0}'>{0}</a></li>", i));
+                        else sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-11' href='MyProduct?page={0}'>{0}</a></li>", i));
                     }
+                    if (total > 1 && (page.Value < total || page.Value != total)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='MyProduct?page={0}'><span aria-hidden='true'><i class='fa fa-angle-right'></i></span></a></li>", page.Value + 1));
                     ViewData["pages"] = sb.ToString();
                     List<Models.ProductModel> products = new List<Models.ProductModel>();
                     string constr = ConfigurationManager.ConnectionStrings["MySQL"].ConnectionString;
@@ -187,7 +185,7 @@ namespace AEIS.Controllers
                     return View();
                 }
             }
-            else return RedirectToAction("Login", "User");
+            else return Redirect("~/login");
         }
 
         public int TotalMyProductCount()
@@ -323,7 +321,7 @@ namespace AEIS.Controllers
                 }
                 return View(Tuple.Create(video, product, emotions));
             }
-            else return RedirectToAction("Login", "User");
+            else return Redirect("~/login");
         }
 
         public ActionResult MyOrder(int? page)
@@ -334,15 +332,13 @@ namespace AEIS.Controllers
                 int total = TotalMyOrderCount();
                 total = (int)Math.Ceiling(total / 10.0);
                 StringBuilder sb = new StringBuilder();
+                if (total > 1 && (page.Value != 1 || page.Value > 1)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='MyOrder?page={0}'><span aria-hidden='true'><i class='fa fa-angle-left'></i></span></a></li>", page.Value - 1));
                 for (int i = 1; i <= total; i++)
                 {
-                    if (total > 1 && (i != 1 || i > 1)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='MyOrder?page={0}'><span aria-hidden='true'><i class='fa fa-angle-left'></i></span></a></li>", i - 1));
-                    if (i == page.Value)
-                        sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 u-pagination-v1-5--active rounded g-pa-4-11' href='MyOrder?page={0}'>{0}</a></li>", i));
-                    else
-                        sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-11' href='MyOrder?page={0}'>{0}</a></li>", i));
-                    if (total > 1 && (i < total || i != total)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='MyOrder?page={0}'><span aria-hidden='true'><i class='fa fa-angle-right'></i></span></a></li>", i + 1));
+                    if (i == page.Value) sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 u-pagination-v1-5--active rounded g-pa-4-11' href='MyOrder?page={0}'>{0}</a></li>", i));
+                    else sb.Append(String.Format("<li class='list-inline-item hidden-sm-down'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-11' href='MyOrder?page={0}'>{0}</a></li>", i));
                 }
+                if (total > 1 && (page.Value < total || page.Value != total)) sb.Append(String.Format("<li class='list-inline-item'><a class='u-pagination-v1__item u-pagination-v1-5 rounded g-pa-4-13' href='MyOrder?page={0}'><span aria-hidden='true'><i class='fa fa-angle-right'></i></span></a></li>", page.Value + 1));
                 ViewData["pages"] = sb.ToString();
                 List<Models.OrderModel> orders = new List<Models.OrderModel>();
                 string constr = ConfigurationManager.ConnectionStrings["MySQL"].ConnectionString;
@@ -373,7 +369,7 @@ namespace AEIS.Controllers
                 }
                 return View(orders);
             }
-            else return RedirectToAction("Login", "User");
+            else return Redirect("~/login");
         }
 
         public int TotalMyOrderCount()
@@ -412,7 +408,7 @@ namespace AEIS.Controllers
                     con.Close();
                 }
             }
-            return RedirectToAction("Profile", "User");
+            return Redirect("~/profile");
         }
 
         public ActionResult ChangePasswordProcess(string old_password, string new_password)
@@ -436,7 +432,7 @@ namespace AEIS.Controllers
                         cmd.Dispose();
                         con.Close();
                     }
-                    return RedirectToAction("Profile", "User");
+                    return Redirect("~/profile");
                 }
             }
             else return RedirectToAction("Profile", "User", new { msg = "fail" });

@@ -52,7 +52,7 @@ namespace AEIS.Controllers
                 }
                 return View(Tuple.Create(cart, user));
             }
-            else return RedirectToAction("Login", "User");
+            else return Redirect("~/login");
         }
 
         public ActionResult CheckOutProcess()
@@ -98,7 +98,7 @@ namespace AEIS.Controllers
                     con.Close();
                 }
             }
-            return RedirectToAction("FinishCheckOut", "Order");
+            return Redirect("~/FinishCheckOut");
         }
 
         public ActionResult FinishCheckOut()
@@ -173,7 +173,7 @@ namespace AEIS.Controllers
                 }
                 return View(Tuple.Create(order, user, od));
             }
-            else return RedirectToAction("Login", "User");
+            else return Redirect("~/login");
         }
 
         public int GetUserID()

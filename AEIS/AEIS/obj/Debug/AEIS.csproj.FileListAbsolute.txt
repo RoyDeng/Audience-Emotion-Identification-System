@@ -100,7 +100,6 @@ C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AE
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.AspNet.Identity.Owin.dll
-C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.dll
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Host.SystemWeb.dll
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.Cookies.dll
@@ -112,7 +111,6 @@ C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AE
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.Twitter.dll
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.ProjectOxford.Emotion.dll
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Newtonsoft.Json.dll
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Owin.dll
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.Helpers.dll
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.Mvc.dll
@@ -142,7 +140,6 @@ C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AE
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.WebPages.Razor.xml
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Antlr3.Runtime.pdb
-C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Newtonsoft.Json.xml
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\EntityFramework.xml
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\EntityFramework.SqlServer.xml
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.AspNet.Identity.Core.xml
@@ -163,3 +160,178 @@ C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AE
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\MySql.Data.dll
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\MySql.Data.Entity.EF6.dll
 C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\MySql.Web.dll
+C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Serialization.dll
+C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Newtonsoft.Json.dll
+C:\Users\Yu-Teng\Documents\GitHub\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Newtonsoft.Json.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\csc.exe
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\vbc.exe
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\VBCSCompiler.exe
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\AEIS.dll.config
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\AEIS.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\AEIS.pdb
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Antlr3.Runtime.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\EntityFramework.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\EntityFramework.SqlServer.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.ProjectOxford.Emotion.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\MySql.Data.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\MySql.Data.Entity.EF6.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\MySql.Web.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Newtonsoft.Json.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Owin.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.Helpers.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.Mvc.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.Optimization.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.Razor.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.WebPages.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.WebPages.Razor.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\WebGrease.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Controllers.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Core.Common.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Core.Communication.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Core.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Enterprise.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Logger.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Owin.Host.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Plugin.Framework.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Protocol.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Protocol.Rfc6455.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Serialization.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Server.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.Helpers.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.Mvc.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.Optimization.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.Razor.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.WebPages.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.WebPages.Razor.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Antlr3.Runtime.pdb
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Newtonsoft.Json.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\EntityFramework.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\EntityFramework.SqlServer.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\obj\Debug\AEIS.csprojResolveAssemblyReference.cache
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\obj\Debug\AEIS.csproj.CoreCompileInputs.cache
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\obj\Debug\AEIS.dll
+C:\Users\Yu Teng Deng\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\obj\Debug\AEIS.pdb
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\csc.exe
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\vbc.exe
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\VBCSCompiler.exe
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\AEIS.dll.config
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\AEIS.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\AEIS.pdb
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Antlr3.Runtime.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\EntityFramework.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\EntityFramework.SqlServer.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.ProjectOxford.Emotion.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\MySql.Data.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\MySql.Data.Entity.EF6.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\MySql.Web.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Newtonsoft.Json.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Owin.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.Helpers.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.Mvc.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.Optimization.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.Razor.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.WebPages.Deployment.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.WebPages.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.WebPages.Razor.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\WebGrease.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Controllers.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Core.Common.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Core.Communication.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Core.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Enterprise.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Logger.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Owin.Host.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Plugin.Framework.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Protocol.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Protocol.Rfc6455.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Serialization.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\XSockets.Server.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.Helpers.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.Mvc.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.Optimization.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.Razor.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.WebPages.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.WebPages.Deployment.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\System.Web.WebPages.Razor.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Antlr3.Runtime.pdb
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Newtonsoft.Json.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\EntityFramework.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\EntityFramework.SqlServer.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\obj\Debug\AEIS.csprojResolveAssemblyReference.cache
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\obj\Debug\AEIS.dll
+C:\Users\xoxo4\Desktop\Audience-Emotion-Identification-System\AEIS\AEIS\obj\Debug\AEIS.pdb

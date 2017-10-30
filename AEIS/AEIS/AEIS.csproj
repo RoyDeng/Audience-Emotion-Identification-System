@@ -18,13 +18,14 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44376</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -155,6 +156,9 @@
     <Reference Include="XSockets.Protocol.Rfc6455">
       <HintPath>..\packages\XSockets.Core.5.0.2.2\lib\net45\XSockets.Protocol.Rfc6455.dll</HintPath>
     </Reference>
+    <Reference Include="XSockets.Serialization">
+      <HintPath>..\packages\XSockets.Core.5.0.2.2\lib\net45\XSockets.Serialization.dll</HintPath>
+    </Reference>
     <Reference Include="XSockets.Server">
       <HintPath>..\packages\XSockets.Server.5.0.2.2\lib\net45\XSockets.Server.dll</HintPath>
     </Reference>
@@ -213,7 +217,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\EmotionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -234,6 +237,7 @@
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\VideoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RTC\Emotion.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -253,9 +257,61 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
-    <Content Include="img\bg.png" />
+    <Content Include="js\gauge.js" />
+    <Content Include="js\images\dragIcon.gif" />
+    <Content Include="js\images\dragIconBlack.gif" />
+    <Content Include="js\images\dragIconH.gif" />
+    <Content Include="js\images\dragIconHBlack.gif" />
+    <Content Include="js\images\dragIconRectBig.png" />
+    <Content Include="js\images\dragIconRectBig.svg" />
+    <Content Include="js\images\dragIconRectBigBlack.png" />
+    <Content Include="js\images\dragIconRectBigBlack.svg" />
+    <Content Include="js\images\dragIconRectBigBlackH.png" />
+    <Content Include="js\images\dragIconRectBigBlackH.svg" />
+    <Content Include="js\images\dragIconRectBigH.png" />
+    <Content Include="js\images\dragIconRectBigH.svg" />
+    <Content Include="js\images\dragIconRectSmall.png" />
+    <Content Include="js\images\dragIconRectSmall.svg" />
+    <Content Include="js\images\dragIconRectSmallBlack.png" />
+    <Content Include="js\images\dragIconRectSmallBlack.svg" />
+    <Content Include="js\images\dragIconRectSmallBlackH.png" />
+    <Content Include="js\images\dragIconRectSmallBlackH.svg" />
+    <Content Include="js\images\dragIconRectSmallH.png" />
+    <Content Include="js\images\dragIconRectSmallH.svg" />
+    <Content Include="js\images\dragIconRoundBig.png" />
+    <Content Include="js\images\dragIconRoundBig.svg" />
+    <Content Include="js\images\dragIconRoundBigBlack.png" />
+    <Content Include="js\images\dragIconRoundBigBlack.svg" />
+    <Content Include="js\images\dragIconRoundBigBlackH.png" />
+    <Content Include="js\images\dragIconRoundBigBlackH.svg" />
+    <Content Include="js\images\dragIconRoundBigH.png" />
+    <Content Include="js\images\dragIconRoundBigH.svg" />
+    <Content Include="js\images\dragIconRoundSmall.png" />
+    <Content Include="js\images\dragIconRoundSmall.svg" />
+    <Content Include="js\images\dragIconRoundSmallBlack.png" />
+    <Content Include="js\images\dragIconRoundSmallBlack.svg" />
+    <Content Include="js\images\dragIconRoundSmallBlackH.png" />
+    <Content Include="js\images\dragIconRoundSmallBlackH.svg" />
+    <Content Include="js\images\dragIconRoundSmallH.png" />
+    <Content Include="js\images\dragIconRoundSmallH.svg" />
+    <Content Include="js\images\eraserIcon.svg" />
+    <Content Include="js\images\eraserIconH.svg" />
+    <Content Include="js\images\export.png" />
+    <Content Include="js\images\exportWhite.png" />
+    <Content Include="js\images\lens.png" />
+    <Content Include="js\images\lens.svg" />
+    <Content Include="js\images\lensWhite.png" />
+    <Content Include="js\images\lensWhite.svg" />
+    <Content Include="js\images\lensWhite_old.png" />
+    <Content Include="js\images\lens_old.png" />
+    <Content Include="js\images\pencilIcon.svg" />
+    <Content Include="js\images\pencilIconH.svg" />
+    <Content Include="js\images\xIcon.svg" />
+    <Content Include="js\images\xIconH.svg" />
+    <Content Include="img\bg.jpg" />
     <Content Include="img\logo.png" />
     <Content Include="js\amcharts.js" />
+    <Content Include="js\amstock.js" />
     <Content Include="js\bob.the.binder.latest.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\camera.js" />
@@ -278,6 +334,130 @@
     <Content Include="js\masonry.pkgd.min.js" />
     <Content Include="js\modernizr.custom.js" />
     <Content Include="js\plugin.js" />
+    <Content Include="js\plugins\dataloader\dataloader.js" />
+    <Content Include="js\plugins\dataloader\dataloader.min.js" />
+    <Content Include="js\plugins\dataloader\examples\gantt_json.html" />
+    <Content Include="js\plugins\dataloader\examples\gauge_json.html" />
+    <Content Include="js\plugins\dataloader\examples\map_json.html" />
+    <Content Include="js\plugins\dataloader\examples\map_json_external_function.html" />
+    <Content Include="js\plugins\dataloader\examples\pie_csv.html" />
+    <Content Include="js\plugins\dataloader\examples\pie_json.html" />
+    <Content Include="js\plugins\dataloader\examples\serial2_json.html" />
+    <Content Include="js\plugins\dataloader\examples\serial_csv.html" />
+    <Content Include="js\plugins\dataloader\examples\serial_json.html" />
+    <Content Include="js\plugins\dataloader\examples\serial_with_dynamic_graphs.html" />
+    <Content Include="js\plugins\dataloader\examples\stock_csv_data_and_events.html" />
+    <Content Include="js\plugins\dataloader\examples\stock_csv_progressbar.html" />
+    <Content Include="js\plugins\dataloader\index.js" />
+    <Content Include="js\plugins\dataloader\lang\cs.js" />
+    <Content Include="js\plugins\dataloader\lang\en.js" />
+    <Content Include="js\plugins\dataloader\lang\fr.js" />
+    <Content Include="js\plugins\dataloader\lang\lt.js" />
+    <Content Include="js\plugins\dataloader\license.txt" />
+    <Content Include="js\plugins\export\examples\advanced.html" />
+    <Content Include="js\plugins\export\examples\export.config.advanced.js" />
+    <Content Include="js\plugins\export\examples\export.config.default.js" />
+    <Content Include="js\plugins\export\examples\funnel.html" />
+    <Content Include="js\plugins\export\examples\gantt.html" />
+    <Content Include="js\plugins\export\examples\gauge.html" />
+    <Content Include="js\plugins\export\examples\images\bicycle.png" />
+    <Content Include="js\plugins\export\examples\images\car.png" />
+    <Content Include="js\plugins\export\examples\images\motorcycle.png" />
+    <Content Include="js\plugins\export\examples\index.html" />
+    <Content Include="js\plugins\export\examples\map.html" />
+    <Content Include="js\plugins\export\examples\pie1.html" />
+    <Content Include="js\plugins\export\examples\pie2.html" />
+    <Content Include="js\plugins\export\examples\pie3.html" />
+    <Content Include="js\plugins\export\examples\pie4.html" />
+    <Content Include="js\plugins\export\examples\radar.html" />
+    <Content Include="js\plugins\export\examples\serial1.html" />
+    <Content Include="js\plugins\export\examples\serial2.html" />
+    <Content Include="js\plugins\export\examples\serial3.html" />
+    <Content Include="js\plugins\export\examples\stock.html" />
+    <Content Include="js\plugins\export\examples\xy.html" />
+    <Content Include="js\plugins\export\export.css" />
+    <Content Include="js\plugins\export\export.js" />
+    <Content Include="js\plugins\export\export.min.js" />
+    <Content Include="js\plugins\export\index.js" />
+    <Content Include="js\plugins\export\lang\cs.js" />
+    <Content Include="js\plugins\export\lang\de.js" />
+    <Content Include="js\plugins\export\lang\en.js" />
+    <Content Include="js\plugins\export\lang\es.js" />
+    <Content Include="js\plugins\export\lang\fr.js" />
+    <Content Include="js\plugins\export\lang\hu.js" />
+    <Content Include="js\plugins\export\lang\it.js" />
+    <Content Include="js\plugins\export\lang\ko.js" />
+    <Content Include="js\plugins\export\lang\lt.js" />
+    <Content Include="js\plugins\export\lang\pl.js" />
+    <Content Include="js\plugins\export\lang\pt.js" />
+    <Content Include="js\plugins\export\lang\tr.js" />
+    <Content Include="js\plugins\export\lang\zh.js" />
+    <Content Include="js\plugins\export\libs\blob.js\blob.js" />
+    <Content Include="js\plugins\export\libs\classList.js\classList.js" />
+    <Content Include="js\plugins\export\libs\classList.js\classList.min.js" />
+    <Content Include="js\plugins\export\libs\fabric.js\fabric.js" />
+    <Content Include="js\plugins\export\libs\fabric.js\fabric.min.js" />
+    <Content Include="js\plugins\export\libs\FileSaver.js\FileSaver.js" />
+    <Content Include="js\plugins\export\libs\FileSaver.js\FileSaver.min.js" />
+    <Content Include="js\plugins\export\libs\jszip\jszip.js" />
+    <Content Include="js\plugins\export\libs\jszip\jszip.min.js" />
+    <Content Include="js\plugins\export\libs\pdfmake\pdfmake.js" />
+    <Content Include="js\plugins\export\libs\pdfmake\pdfmake.min.js" />
+    <Content Include="js\plugins\export\libs\pdfmake\vfs_fonts.js" />
+    <Content Include="js\plugins\export\libs\xlsx\xlsx.js" />
+    <Content Include="js\plugins\export\libs\xlsx\xlsx.min.js" />
+    <Content Include="js\plugins\export\shapes\1.svg" />
+    <Content Include="js\plugins\export\shapes\10.svg" />
+    <Content Include="js\plugins\export\shapes\11.svg" />
+    <Content Include="js\plugins\export\shapes\12.svg" />
+    <Content Include="js\plugins\export\shapes\13.svg" />
+    <Content Include="js\plugins\export\shapes\14.svg" />
+    <Content Include="js\plugins\export\shapes\15.svg" />
+    <Content Include="js\plugins\export\shapes\16.svg" />
+    <Content Include="js\plugins\export\shapes\17.svg" />
+    <Content Include="js\plugins\export\shapes\18.svg" />
+    <Content Include="js\plugins\export\shapes\19.svg" />
+    <Content Include="js\plugins\export\shapes\2.svg" />
+    <Content Include="js\plugins\export\shapes\20.svg" />
+    <Content Include="js\plugins\export\shapes\21.svg" />
+    <Content Include="js\plugins\export\shapes\22.svg" />
+    <Content Include="js\plugins\export\shapes\23.svg" />
+    <Content Include="js\plugins\export\shapes\24.svg" />
+    <Content Include="js\plugins\export\shapes\25.svg" />
+    <Content Include="js\plugins\export\shapes\26.svg" />
+    <Content Include="js\plugins\export\shapes\27.svg" />
+    <Content Include="js\plugins\export\shapes\28.svg" />
+    <Content Include="js\plugins\export\shapes\29.svg" />
+    <Content Include="js\plugins\export\shapes\3.svg" />
+    <Content Include="js\plugins\export\shapes\30.svg" />
+    <Content Include="js\plugins\export\shapes\31.svg" />
+    <Content Include="js\plugins\export\shapes\4.svg" />
+    <Content Include="js\plugins\export\shapes\5.svg" />
+    <Content Include="js\plugins\export\shapes\6.svg" />
+    <Content Include="js\plugins\export\shapes\7.svg" />
+    <Content Include="js\plugins\export\shapes\8.svg" />
+    <Content Include="js\plugins\export\shapes\9.svg" />
+    <Content Include="js\plugins\responsive\examples\funnel.html" />
+    <Content Include="js\plugins\responsive\examples\gantt.html" />
+    <Content Include="js\plugins\responsive\examples\gauge.html" />
+    <Content Include="js\plugins\responsive\examples\images\bicycle.png" />
+    <Content Include="js\plugins\responsive\examples\images\car.png" />
+    <Content Include="js\plugins\responsive\examples\images\motorcycle.png" />
+    <Content Include="js\plugins\responsive\examples\index.html" />
+    <Content Include="js\plugins\responsive\examples\map.html" />
+    <Content Include="js\plugins\responsive\examples\pie1.html" />
+    <Content Include="js\plugins\responsive\examples\pie2.html" />
+    <Content Include="js\plugins\responsive\examples\pie3.html" />
+    <Content Include="js\plugins\responsive\examples\radar.html" />
+    <Content Include="js\plugins\responsive\examples\serial1.html" />
+    <Content Include="js\plugins\responsive\examples\serial2.html" />
+    <Content Include="js\plugins\responsive\examples\serial3.html" />
+    <Content Include="js\plugins\responsive\examples\stock.html" />
+    <Content Include="js\plugins\responsive\examples\xy.html" />
+    <Content Include="js\plugins\responsive\index.js" />
+    <Content Include="js\plugins\responsive\license.txt" />
+    <Content Include="js\plugins\responsive\responsive.js" />
+    <Content Include="js\plugins\responsive\responsive.min.js" />
     <Content Include="js\RecordRTC.js" />
     <Content Include="js\rtc-controller.js" />
     <Content Include="js\scroller.js" />
@@ -305,6 +485,11 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="js\themes\black.js" />
+    <Content Include="js\themes\chalk.js" />
+    <Content Include="js\themes\dark.js" />
+    <Content Include="js\themes\light.js" />
+    <Content Include="js\themes\patterns.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -315,19 +500,19 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\User\Login.cshtml" />
-    <Content Include="Views\User\Register.cshtml" />
-    <Content Include="Views\User\RegisterSuccess.cshtml" />
-    <Content Include="Views\User\Profile.cshtml" />
-    <Content Include="Views\Video\CreateVideo.cshtml" />
-    <Content Include="Views\Video\StreamVideo.cshtml" />
-    <Content Include="Views\Video\Index.cshtml" />
-    <Content Include="Views\Video\WatchVideo.cshtml" />
-    <Content Include="Views\Shared\Main.cshtml" />
-    <Content Include="Views\Shared\Header.cshtml" />
-    <Content Include="Views\Shared\Footer.cshtml" />
+    <Content Include="Views\User\login.cshtml" />
+    <Content Include="Views\User\register.cshtml" />
+    <Content Include="Views\User\registersuccess.cshtml" />
+    <Content Include="Views\User\profile.cshtml" />
+    <Content Include="Views\Video\createvideo.cshtml" />
+    <Content Include="Views\Video\streamvideo.cshtml" />
+    <Content Include="Views\Video\index.cshtml" />
+    <Content Include="Views\Video\watchvideo.cshtml" />
+    <Content Include="Views\Shared\main.cshtml" />
+    <Content Include="Views\Shared\header.cshtml" />
+    <Content Include="Views\Shared\footer.cshtml" />
     <Content Include="scss\font-awesome.scss" />
     <Content Include="scss\_animated.scss" />
     <Content Include="scss\_bordered-pulled.scss" />
@@ -342,29 +527,61 @@
     <Content Include="scss\_screen-reader.scss" />
     <Content Include="scss\_stacked.scss" />
     <Content Include="scss\_variables.scss" />
-    <Content Include="Views\Shop\Index.cshtml" />
-    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Shop\index.cshtml" />
+    <Content Include="Views\Product\index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
-    <Content Include="Views\Product\CreateProduct.cshtml" />
-    <Content Include="Views\User\ForgetPassword.cshtml" />
-    <Content Include="Views\Home\Terms.cshtml" />
-    <Content Include="Views\Product\ProductDetail.cshtml" />
-    <Content Include="Views\User\MyProduct.cshtml" />
-    <Content Include="Views\User\MyOrder.cshtml" />
-    <Content Include="Views\Shop\ShopDetail.cshtml" />
-    <Content Include="Views\Order\OrderDetail.cshtml" />
-    <Content Include="Views\User\MyProductDetail.cshtml" />
-    <Content Include="Views\Order\CheckOut.cshtml" />
-    <Content Include="Views\Order\FinishCheckOut.cshtml" />
+    <Content Include="Views\Product\createproduct.cshtml" />
+    <Content Include="Views\User\forgetpassword.cshtml" />
+    <Content Include="Views\Home\terms.cshtml" />
+    <Content Include="Views\Product\productdetail.cshtml" />
+    <Content Include="Views\User\myproduct.cshtml" />
+    <Content Include="Views\User\myorder.cshtml" />
+    <Content Include="Views\Shop\shopdetail.cshtml" />
+    <Content Include="Views\Order\orderdetail.cshtml" />
+    <Content Include="Views\User\myproductdetail.cshtml" />
+    <Content Include="Views\Order\checkout.cshtml" />
+    <Content Include="Views\Order\finishcheckout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="uploads\" />
+    <Folder Include="Views\Emotion\" />
     <Folder Include="Views\Tool\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="js\plugins\dataloader\bower.json" />
+    <Content Include="js\plugins\dataloader\examples\data\gantt.json" />
+    <Content Include="js\plugins\dataloader\examples\data\gauge.json" />
+    <Content Include="js\plugins\dataloader\examples\data\map.json" />
+    <Content Include="js\plugins\dataloader\examples\data\map_areas.json" />
+    <Content Include="js\plugins\dataloader\examples\data\MSFT.csv" />
+    <Content Include="js\plugins\dataloader\examples\data\MSFT_events.csv" />
+    <Content Include="js\plugins\dataloader\examples\data\pie.csv" />
+    <Content Include="js\plugins\dataloader\examples\data\pie.json" />
+    <Content Include="js\plugins\dataloader\examples\data\serial.csv" />
+    <Content Include="js\plugins\dataloader\examples\data\serial.json" />
+    <Content Include="js\plugins\dataloader\examples\data\serial2.json" />
+    <Content Include="js\plugins\dataloader\examples\data\TXN.csv" />
+    <Content Include="js\plugins\dataloader\package.json" />
+    <Content Include="js\plugins\dataloader\readme.md" />
+    <Content Include="js\plugins\export\.gitignore" />
+    <Content Include="js\plugins\export\bower.json" />
+    <Content Include="js\plugins\export\libs\pdfmake\pdfmake.min.js.map" />
+    <Content Include="js\plugins\export\libs\xlsx\LICENSE" />
+    <Content Include="js\plugins\export\libs\xlsx\xlsx.min.map" />
+    <Content Include="js\plugins\export\LICENSE" />
+    <Content Include="js\plugins\export\package.json" />
+    <Content Include="js\plugins\export\README.md" />
+    <Content Include="js\plugins\responsive\bower.json" />
+    <Content Include="js\plugins\responsive\package.json" />
+    <Content Include="js\plugins\responsive\readme.md" />
+    <Content Include="js\plugins\responsive\responsive.min.js.map" />
     <None Include="Project_Readme.html" />
+    <None Include="Properties\PublishProfiles\AEIS20171004110500 - Web Deploy.pubxml">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xsockets.license.x" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

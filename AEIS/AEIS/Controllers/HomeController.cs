@@ -18,7 +18,7 @@ namespace AEIS.Controllers
             string constr = ConfigurationManager.ConnectionStrings["MySQL"].ConnectionString;
             using (MySqlConnection con = new MySqlConnection(constr))
             {
-                string query = "SELECT p.product_id, name, price FROM order_detail AS od INNER JOIN product AS p ON od.product_id=p.product_id ORDER BY od.quantity LIMIT 10";
+                string query = "SELECT p.product_id, name, price FROM order_detail AS od INNER JOIN product AS p ON od.product_id=p.product_id GROUP BY name ORDER BY od.quantity LIMIT 10";
                 using (MySqlCommand cmd = new MySqlCommand(query))
                 {
                     cmd.Connection = con;
